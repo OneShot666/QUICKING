@@ -1,59 +1,47 @@
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour {
-    [Tooltip("Target to follow (free camera mode if target is null)")]
-    [SerializeField] private Transform target;
-    [Tooltip("Distance from the target")]
-    [SerializeField] private float offSet = 50f;
-    [Tooltip("Speed of camera movement")]
-    [SerializeField] private float speed = 10f;
-    [Tooltip("Speed of camera rotation")]
-    [SerializeField] private float rotation = 100f;
+    [Header("Target (player)")]
+    [Tooltip("Object to follow")]
+    public Transform target;
 
-    private bool _isPaused;
+    [Header("Settings")]
+    [Tooltip("If true: Camera stays at fixed position but rotates to look at player." +
+             "\nIf false: Camera follows player position but keeps its own rotation.")]
+    public bool rotateWithPlayer;
+    [Tooltip("Smooth speed of movement")]
+    public float smoothTime = 0.2f;
 
-    void Start() {
-        transform.LookAt(target);                                              // Look for a leader
+    private Vector3 _currentVelocity;
+    private Vector3 _offset;
+
+    private void Start() {
+        if (!target) return;
+
+        _offset = transform.position - target.position;
     }
 
-    void Update() {
-        if (target) {
-            transform.position = Vector3.Lerp(transform.position, target.position + target.forward * offSet, speed * Time.unscaledDeltaTime);
-            transform.LookAt(target);
-        } else {                                                                // Free camera mode
-            MoveCamera();
-            RotateCamera();
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.C)) ToggleCameraMode();                    // Change mode with 'C'
+    }
+
+    private void LateUpdate() {
+        if (!target) return;
+
+        if (rotateWithPlayer) transform.LookAt(target.position + Vector3.up * 1.5f);    // Rotate camera
+        else {
+            Vector3 targetPosition = target.position + _offset;                 // Follow player
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _currentVelocity, smoothTime);
         }
     }
 
-    private void MoveCamera() {
-        if (Input.GetKeyDown(KeyCode.Space)) {                                  // Un/pause
-            _isPaused = !_isPaused;
-            Time.timeScale = _isPaused ? 0f : 1f;
-        }
-
-        Vector3 dir = Vector3.zero;
-        
-        if (Input.GetKey(KeyCode.W)) dir += transform.forward;                  // Forward
-        if (Input.GetKey(KeyCode.S)) dir -= transform.forward;                  // Backward
-        if (Input.GetKey(KeyCode.A)) dir -= transform.right;                    // Left
-        if (Input.GetKey(KeyCode.D)) dir += transform.right;                    // Right
-        if (Input.GetKey(KeyCode.Q)) dir += Vector3.up;                         // Up
-        if (Input.GetKey(KeyCode.E)) dir -= Vector3.up;                         // Down
-
-        transform.position += dir.normalized * (speed * Time.unscaledDeltaTime);  // Move camera
+    private void ToggleCameraMode() {                                           // Toggle helper
+        ToggleCameraMode(!rotateWithPlayer);
     }
 
-    private void RotateCamera() {
-        float yaw = 0f;                                                         // Horizontal rotation
-        float pitch = 0f;                                                       // Vertical rotation
+    private void ToggleCameraMode(bool enableRotationMode) {                    // Change camera mode
+        rotateWithPlayer = enableRotationMode;
 
-        if (Input.GetKey(KeyCode.LeftArrow)) yaw = -1f; 
-        if (Input.GetKey(KeyCode.RightArrow)) yaw = 1f; 
-        if (Input.GetKey(KeyCode.UpArrow)) pitch = -1f; 
-        if (Input.GetKey(KeyCode.DownArrow)) pitch = 1f; 
-        
-        transform.Rotate(Vector3.up, yaw * rotation * Time.unscaledDeltaTime, Space.World); 
-        transform.Rotate(Vector3.right, pitch * rotation * Time.unscaledDeltaTime, Space.Self);
+        if (!rotateWithPlayer) _offset = transform.position - target.position;
     }
 }
