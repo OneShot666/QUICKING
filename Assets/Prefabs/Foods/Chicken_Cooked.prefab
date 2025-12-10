@@ -183,10 +183,11 @@ GameObject:
   - component: {fileID: 4418209590649881306}
   - component: {fileID: 6645495851828628518}
   - component: {fileID: 3236554932598650117}
+  - component: {fileID: 3180307270204209059}
   - component: {fileID: 3342968067325191414}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chicken_Cooked
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,6 +262,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &3180307270204209059
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4821919199197685339}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.993945
+  m_Height: 1.0591084
+  m_Direction: 1
+  m_Center: {x: -0.00000059604645, y: -0.10389535, z: -0.08000639}
 --- !u!114 &3342968067325191414
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 3289897608061972121}
   - component: {fileID: 5466058491288108215}
   - component: {fileID: 3132983105721872473}
+  - component: {fileID: -7482734475061516918}
   - component: {fileID: 1207278896483503280}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Corn_Piece
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-7482734475061516918
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6842875167877187704}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.21935007
+  m_Height: 0.20000017
+  m_Direction: 1
+  m_Center: {x: 0.000000029802322, y: 0.100000024, z: 0.000000044703484}
 --- !u!114 &1207278896483503280
 MonoBehaviour:
   m_ObjectHideFlags: 0

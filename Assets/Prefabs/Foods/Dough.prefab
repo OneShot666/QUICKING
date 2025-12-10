@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 3483207575547429765}
   - component: {fileID: 8269389605421158483}
   - component: {fileID: 8217099500226354650}
+  - component: {fileID: 4648397153973720193}
   - component: {fileID: 6928504309321761469}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dough
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &4648397153973720193
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4400179495029465952}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6130915
+  m_Height: 0.81199455
+  m_Direction: 1
+  m_Center: {x: 0.0059323013, y: 0.09099662, z: 0.0044674873}
 --- !u!114 &6928504309321761469
 MonoBehaviour:
   m_ObjectHideFlags: 0

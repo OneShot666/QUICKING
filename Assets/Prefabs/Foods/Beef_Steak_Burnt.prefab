@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 3965997523822948614}
   - component: {fileID: 6462090305334169968}
   - component: {fileID: 4931687193939625302}
+  - component: {fileID: 1229876618540254403}
   - component: {fileID: 7049608626433617156}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Beef_Steak_Burnt
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &1229876618540254403
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5328997636226339257}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5490203
+  m_Height: 0.1400006
+  m_Direction: 1
+  m_Center: {x: 0.041553512, y: 0.000000037252903, z: -0.06915285}
 --- !u!114 &7049608626433617156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +133,10 @@ MonoBehaviour:
     quantity: 0
     processTime: 0
   cookResult:
+    resultingPrefab: {fileID: 0}
+    quantity: 0
+    processTime: 0
+  eatResult:
     resultingPrefab: {fileID: 0}
     quantity: 0
     processTime: 0

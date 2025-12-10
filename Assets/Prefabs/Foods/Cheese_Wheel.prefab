@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 9096457802045573790}
   - component: {fileID: 2218497735592041252}
   - component: {fileID: 3328833449420938752}
+  - component: {fileID: 5037805984952619902}
   - component: {fileID: -7897334076961890576}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cheese_Wheel
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &5037805984952619902
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127203138270158946}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.0736847
+  m_Height: 0.60000056
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-7897334076961890576
 MonoBehaviour:
   m_ObjectHideFlags: 0

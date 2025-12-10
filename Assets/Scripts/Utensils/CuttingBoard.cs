@@ -1,20 +1,26 @@
 ﻿using UnityEngine;
+using Food;
 
-public class CuttingBoard : MonoBehaviour {
-    [Header("References")]
-    [Tooltip("Where to place food item")]
-    public Transform slot;
+// ReSharper disable Unity.PerformanceCriticalCodeInvocation
+namespace Utensils {
+    public class CuttingBoard : ItemSurface {
+        public override void OnInteract() {
+            ItemBase item = GetHeldItem();                                      // Get current item
+            if (item is FoodItem food && food.CanBeSliced()) SliceFood(food);
+        }
 
-    public void CutFood() {
-        FoodItem food = slot.GetComponentInChildren<FoodItem>();                // Get food part of food
+        private void SliceFood(FoodItem food) {
+            var sliceData = food.GetSliceInfo();
 
-        if (food && food.CanBeSliced()) {
-            var info = food.GetSliceInfo();                                     // Get data part of food
+            if (!sliceData.IsValid) return;
 
-            Destroy(food.gameObject);                                           // Destroy old food
+            Destroy(food.gameObject);                                           // Destroy object
 
-            for (int i = 0; i < info.quantity; i++)                             // Create parts
-                Instantiate(info.resultingPrefab, slot.position + Vector3.up * (i + 0.05f), Quaternion.identity);
+            for (int i = 0; i < sliceData.quantity; i++) {                      // Create slices
+                Vector3 spawnPos = GetPlacementTransform().position + Vector3.up * (i * 0.05f) + Vector3.right * (i * 0.05f);
+                FoodItem newSlice = Instantiate(sliceData.resultingPrefab, spawnPos, Quaternion.identity);
+                newSlice.OnPlace(GetPlacementTransform());                      // Placed on board
+            }
         }
     }
 }

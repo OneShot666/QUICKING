@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 5308449195566083431}
   - component: {fileID: 6109735920416409366}
   - component: {fileID: 8491534589434847728}
+  - component: {fileID: 6330823518164967561}
   - component: {fileID: -8387163540432728844}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Burger_Bun_Sesame
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &6330823518164967561
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6530758574615387552}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Height: 0.70367783
+  m_Direction: 1
+  m_Center: {x: 0.000000029802322, y: 0.048402727, z: 0}
 --- !u!114 &-8387163540432728844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,3 +136,7 @@ MonoBehaviour:
     resultingPrefab: {fileID: -2463785197433630342, guid: ae0fcd4f8db7fcc4fb6825d741b1a17b, type: 3}
     quantity: 1
     processTime: 5
+  eatResult:
+    resultingPrefab: {fileID: 0}
+    quantity: 0
+    processTime: 0

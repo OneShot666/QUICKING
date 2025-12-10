@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 7846889424519459554}
   - component: {fileID: 5053796279400295732}
   - component: {fileID: 7133005183328272307}
+  - component: {fileID: 3604896530604343633}
   - component: {fileID: 1751500790233641213}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Corn_Pop_Low_Cooked
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &3604896530604343633
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2535577255557628361}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.22613624
+  m_Height: 0.2297264
+  m_Direction: 1
+  m_Center: {x: 0.027562201, y: 0.1148632, z: 0.053176798}
 --- !u!114 &1751500790233641213
 MonoBehaviour:
   m_ObjectHideFlags: 0

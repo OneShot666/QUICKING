@@ -269,10 +269,11 @@ GameObject:
   - component: {fileID: 2644063952210784074}
   - component: {fileID: 4375816028192294401}
   - component: {fileID: 8220212673192109288}
+  - component: {fileID: 3530418059830435627}
   - component: {fileID: -6297816064313088931}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lettuce_Butterhead_Slice
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -351,6 +352,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &3530418059830435627
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5261863767446500540}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.068949044
+  m_Height: 0.4403741
+  m_Direction: 1
+  m_Center: {x: -0.00000017136335, y: 0.21352841, z: -0.039141633}
 --- !u!114 &-6297816064313088931
 MonoBehaviour:
   m_ObjectHideFlags: 0

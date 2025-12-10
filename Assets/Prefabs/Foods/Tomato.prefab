@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 7075347773576273006}
   - component: {fileID: 6389726839890337922}
   - component: {fileID: 61952067907521354}
+  - component: {fileID: 1316148726060386818}
   - component: {fileID: -6236043375764762405}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tomato
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,6 +89,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &1316148726060386818
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5901808493792163828}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.54
+  m_Height: 0.8389327
+  m_Direction: 1
+  m_Center: {x: 0.000000029802322, y: 0.0068998337, z: 0}
 --- !u!114 &-6236043375764762405
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 7598217512794184118}
   - component: {fileID: 7570355134324788564}
   - component: {fileID: 7432666184162129336}
+  - component: {fileID: -406552925655758267}
   - component: {fileID: -4499268300807045926}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Potato_Chip_Raw
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-406552925655758267
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5490091606128542859}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7615298
+  m_Height: 0.12716562
+  m_Direction: 1
+  m_Center: {x: 0.0044235587, y: -0.0000035576522, z: -0.008232512}
 --- !u!114 &-4499268300807045926
 MonoBehaviour:
   m_ObjectHideFlags: 0

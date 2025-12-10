@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 6804435657859268398}
   - component: {fileID: 8747819945482074098}
   - component: {fileID: 6231215725584283358}
+  - component: {fileID: -3932663509398947613}
   - component: {fileID: -5596821433962154168}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Carrot_Cooked
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-3932663509398947613
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824939708847962258}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1875
+  m_Height: 0.07000021
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-5596821433962154168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +133,10 @@ MonoBehaviour:
     quantity: 0
     processTime: 0
   cookResult:
+    resultingPrefab: {fileID: 0}
+    quantity: 0
+    processTime: 0
+  eatResult:
     resultingPrefab: {fileID: 0}
     quantity: 0
     processTime: 0

@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 5903824351993105302}
   - component: {fileID: 8657337340020235039}
   - component: {fileID: 1273837393429932228}
+  - component: {fileID: -5727241663369327022}
   - component: {fileID: -2161228957668039931}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mushroom_Slice
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-5727241663369327022
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6865866279643621036}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.39999998
+  m_Height: 0.109158896
+  m_Direction: 1
+  m_Center: {x: -0.000000029802322, y: 0.0000000037252903, z: 0.015533209}
 --- !u!114 &-2161228957668039931
 MonoBehaviour:
   m_ObjectHideFlags: 0

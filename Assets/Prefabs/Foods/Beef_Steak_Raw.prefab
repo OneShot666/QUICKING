@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 4780950550655648969}
   - component: {fileID: 6309455104540937070}
   - component: {fileID: 1182275716867520712}
+  - component: {fileID: 3779168774494763446}
   - component: {fileID: 8158748690565765752}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Beef_Steak_Raw
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &3779168774494763446
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902271098695974524}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5490203
+  m_Height: 0.1400006
+  m_Direction: 1
+  m_Center: {x: 0.041553512, y: 0.000000037252903, z: -0.06915285}
 --- !u!114 &8158748690565765752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,3 +136,7 @@ MonoBehaviour:
     resultingPrefab: {fileID: 1984004985561941351, guid: b91be7cd9deba3d4f8ef8e8c24b9d828, type: 3}
     quantity: 1
     processTime: 10
+  eatResult:
+    resultingPrefab: {fileID: 0}
+    quantity: 0
+    processTime: 0

@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 4826036319738026354}
   - component: {fileID: 3244088243702729461}
   - component: {fileID: 6316559646732647366}
+  - component: {fileID: -5382905413685662458}
   - component: {fileID: -5602463111652902729}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fish_Burnt_Slice
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-5382905413685662458
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338452311974443783}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3561623
+  m_Height: 0.19626608
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.00015383586, z: -0.05955407}
 --- !u!114 &-5602463111652902729
 MonoBehaviour:
   m_ObjectHideFlags: 0

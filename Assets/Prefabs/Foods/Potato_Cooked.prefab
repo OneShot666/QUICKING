@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 7031565321965555231}
   - component: {fileID: 3604661524947672969}
   - component: {fileID: 5386457665242854212}
+  - component: {fileID: -8430185216588896348}
   - component: {fileID: 1465906093028572494}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Potato_Cooked
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-8430185216588896348
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6661957488270222651}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.79999995
+  m_Height: 0.9808924
+  m_Direction: 1
+  m_Center: {x: 0.00043705106, y: -0.0024645776, z: -0.000000029802322}
 --- !u!114 &1465906093028572494
 MonoBehaviour:
   m_ObjectHideFlags: 0

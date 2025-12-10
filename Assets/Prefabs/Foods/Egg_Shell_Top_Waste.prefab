@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 3067529704754564289}
   - component: {fileID: 7469328451676047137}
   - component: {fileID: 3064261047066631290}
+  - component: {fileID: 1559357640549403331}
   - component: {fileID: 4556164009231008798}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Egg_Shell_Top_Waste
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &1559357640549403331
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8044471692388540427}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.29895565
+  m_Height: 0.39937502
+  m_Direction: 1
+  m_Center: {x: -0.0011437386, y: -0.037947074, z: 0.0019392371}
 --- !u!114 &4556164009231008798
 MonoBehaviour:
   m_ObjectHideFlags: 0

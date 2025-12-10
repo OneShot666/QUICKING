@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 8058602690883168781}
   - component: {fileID: 8227459007615300521}
   - component: {fileID: 2317552488373393151}
+  - component: {fileID: 9173574276653673491}
   - component: {fileID: 3755520245390752684}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eggplant_Slice_Burn
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &9173574276653673491
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951782483902307183}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Height: 0.100000225
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3755520245390752684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +133,10 @@ MonoBehaviour:
     quantity: 0
     processTime: 0
   cookResult:
+    resultingPrefab: {fileID: 0}
+    quantity: 0
+    processTime: 0
+  eatResult:
     resultingPrefab: {fileID: 0}
     quantity: 0
     processTime: 0

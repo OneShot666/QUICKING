@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 50080757993329353}
   - component: {fileID: 6967641233107949589}
   - component: {fileID: 152239574769211270}
+  - component: {fileID: 7052419031450618498}
   - component: {fileID: -1951108004098977002}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cheddar_Cooked
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &7052419031450618498
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5356622305639973082}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.40000004
+  m_Height: 0.08200024
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.024999999, z: -0.000000014901161}
 --- !u!114 &-1951108004098977002
 MonoBehaviour:
   m_ObjectHideFlags: 0

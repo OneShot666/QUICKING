@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 8812274559882116376}
   - component: {fileID: 4066728064625340345}
   - component: {fileID: 8869842396586304556}
+  - component: {fileID: -2971883858329933944}
   - component: {fileID: -5584172545799341162}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sandwich_Bun
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-2971883858329933944
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8422597256606356608}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.98999995
+  m_Height: 0.60458964
+  m_Direction: 1
+  m_Center: {x: 0.00000011920929, y: 0.07712536, z: -0.000000014901161}
 --- !u!114 &-5584172545799341162
 MonoBehaviour:
   m_ObjectHideFlags: 0

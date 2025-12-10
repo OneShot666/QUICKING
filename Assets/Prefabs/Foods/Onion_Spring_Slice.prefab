@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 8855045794496412481}
   - component: {fileID: 1454591592083012393}
   - component: {fileID: 4786038700149447592}
+  - component: {fileID: -6990786775121481089}
   - component: {fileID: 4365162768234116696}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Onion_Spring_Slice
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-6990786775121481089
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5127126140221963930}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.029218053
+  m_Height: 0.029367225
+  m_Direction: 1
+  m_Center: {x: 0.00000006984919, y: -0.0000000018626451, z: 0}
 --- !u!114 &4365162768234116696
 MonoBehaviour:
   m_ObjectHideFlags: 0

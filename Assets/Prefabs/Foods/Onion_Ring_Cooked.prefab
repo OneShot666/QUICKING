@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 6213011752919023937}
   - component: {fileID: 455461976257423042}
   - component: {fileID: 668804690101850355}
+  - component: {fileID: -6669666863913893128}
   - component: {fileID: -489743995199855965}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Onion_Ring_Cooked
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-6669666863913893128
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2385259768114628809}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.46999723
+  m_Height: 0.106271386
+  m_Direction: 1
+  m_Center: {x: -0.022066623, y: 0.023872726, z: 0.00012616813}
 --- !u!114 &-489743995199855965
 MonoBehaviour:
   m_ObjectHideFlags: 0

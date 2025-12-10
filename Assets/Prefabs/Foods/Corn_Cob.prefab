@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 2601390388977534920}
   - component: {fileID: 8266595564299557930}
   - component: {fileID: 7233129401604462301}
+  - component: {fileID: 3436492602091120963}
   - component: {fileID: -8254338890951861370}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Corn_Cob
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2164171502511104585}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35,7 +36,7 @@ Transform:
   - {fileID: 465708107852896823}
   - {fileID: 4193433211773433042}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!33 &8266595564299557930
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -89,6 +90,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &3436492602091120963
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164171502511104585}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3590461
+  m_Height: 1.2728248
+  m_Direction: 1
+  m_Center: {x: -0.00041657686, y: -0.016000122, z: -0.006179929}
 --- !u!114 &-8254338890951861370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0173c015c3c448b88df1c79e7e9aeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodContainer: {fileID: 0}
   itemName: Corn Cob
   itemDescription: Not cooked yet
   icon: {fileID: 0}

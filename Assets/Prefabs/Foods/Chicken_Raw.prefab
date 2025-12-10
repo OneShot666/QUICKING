@@ -97,10 +97,11 @@ GameObject:
   - component: {fileID: 377890370721225403}
   - component: {fileID: 8724826831413151315}
   - component: {fileID: 2064960237284803465}
+  - component: {fileID: -5511376604890906770}
   - component: {fileID: 2807512059787250556}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chicken_Raw
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,6 +176,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-5511376604890906770
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4643466584054242252}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.993945
+  m_Height: 1.0591084
+  m_Direction: 1
+  m_Center: {x: -0.00000059604645, y: -0.10389535, z: -0.08000639}
 --- !u!114 &2807512059787250556
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 3327662087685901562}
   - component: {fileID: 2529288028283478180}
   - component: {fileID: 4851984635035289757}
+  - component: {fileID: 1714156366237380645}
   - component: {fileID: -8757863823207792846}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Potato_Chip_Burnt
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &1714156366237380645
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644822973502011504}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7615298
+  m_Height: 0.12716562
+  m_Direction: 1
+  m_Center: {x: 0.0044235587, y: -0.0000035576522, z: -0.008232512}
 --- !u!114 &-8757863823207792846
 MonoBehaviour:
   m_ObjectHideFlags: 0

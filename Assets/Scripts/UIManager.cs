@@ -1,7 +1,6 @@
 using UnityEngine;
 
 // Personal TO DO List
-// . Check items pick up/drop logics
 // . Add kitchen scripts (check with R)
 // R Add clients (hungry time + angry time)
 

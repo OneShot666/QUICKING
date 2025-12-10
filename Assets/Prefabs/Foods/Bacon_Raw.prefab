@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 7325706518970223822}
   - component: {fileID: 6212184054156746939}
   - component: {fileID: 7484782019652318238}
+  - component: {fileID: -442212100753189331}
   - component: {fileID: -2300531492189495934}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bacon_Raw
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-442212100753189331
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655350519324790408}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.41524097, y: 0.024000762, z: 1.4227893}
+  m_Center: {x: -0.028114751, y: -0.000000028871, z: 0.027888715}
 --- !u!114 &-2300531492189495934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,3 +134,7 @@ MonoBehaviour:
     resultingPrefab: {fileID: 4369407694447204227, guid: 4f66db47f213998488344b042aa878d7, type: 3}
     quantity: 1
     processTime: 10
+  eatResult:
+    resultingPrefab: {fileID: 0}
+    quantity: 0
+    processTime: 0

@@ -97,10 +97,11 @@ GameObject:
   - component: {fileID: 2240130726324106290}
   - component: {fileID: 4957071135318081413}
   - component: {fileID: 4115173401109374610}
+  - component: {fileID: 4713237768135926022}
   - component: {fileID: 1545586696562004578}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eggplant
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,6 +175,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &4713237768135926022
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3900775012517803629}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.80393505
+  m_Height: 1.0185512
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0.0023690462, z: 0.044849336}
 --- !u!114 &1545586696562004578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0173c015c3c448b88df1c79e7e9aeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodContainer: {fileID: 0}
   itemName: Eggplant
   itemDescription: Not cooked yet
   icon: {fileID: 0}
@@ -196,6 +221,10 @@ MonoBehaviour:
     quantity: 3
     processTime: 3
   cookResult:
+    resultingPrefab: {fileID: 0}
+    quantity: 0
+    processTime: 0
+  eatResult:
     resultingPrefab: {fileID: 0}
     quantity: 0
     processTime: 0

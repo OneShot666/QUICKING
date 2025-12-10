@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 4722518107258997730}
   - component: {fileID: 3800904072553960603}
   - component: {fileID: 2514644964286518560}
+  - component: {fileID: -2162914490714694241}
   - component: {fileID: -4216509368207554089}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: onion_Ring_Burnt
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-2162914490714694241
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033258318072254537}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.48051685
+  m_Height: 0.106271386
+  m_Direction: 1
+  m_Center: {x: -0.025347248, y: 0.023872726, z: -0.0011062026}
 --- !u!114 &-4216509368207554089
 MonoBehaviour:
   m_ObjectHideFlags: 0

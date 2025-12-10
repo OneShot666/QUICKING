@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 2892323396810154874}
   - component: {fileID: 4790396580425240062}
   - component: {fileID: 1814675187373708635}
+  - component: {fileID: 1026794198241679953}
   - component: {fileID: -3949813557383405316}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sausage_Cooked
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &1026794198241679953
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6667454754624132840}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Height: 0.4000001
+  m_Direction: 1
+  m_Center: {x: -0.000000037252903, y: -0.000000052154064, z: 0.00000008940697}
 --- !u!114 &-3949813557383405316
 MonoBehaviour:
   m_ObjectHideFlags: 0
