@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Food;
 
+// Add manage food cutting timer function
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation
 namespace Utensils {
     public class CuttingBoard : ItemSurface {

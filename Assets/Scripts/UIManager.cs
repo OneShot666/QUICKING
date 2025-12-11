@@ -1,8 +1,9 @@
 using UnityEngine;
 
 // Personal TO DO List
-// . Add kitchen scripts (check with R)
-// R Add clients (hungry time + angry time)
+// . Adding script to cook ingredients
+// ! Add kitchen scripts (check with R)
+// R Add clients + orders (hungry time + angry time)
 
 // Official TO DO List
 // ! Objects have tag to filter inventory display
