@@ -533,7 +533,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 2.8, y: 2.8, z: 2.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8141183813469426903}
@@ -600,14 +600,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902110dc04a148fa8c691f9c7dbb1be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftHand: {fileID: 8443797340374396450}
+  rightHand: {fileID: 3183201889047884792}
+  pickUpPrompt: {fileID: 0}
   interactLayer:
     serializedVersion: 2
     m_Bits: 64
   interactionRadius: 4
   interactionOffset: {x: 0, y: 1, z: 0}
-  leftHand: {fileID: 8443797340374396450}
-  rightHand: {fileID: 3183201889047884792}
-  pickUpPrompt: {fileID: 0}
+  workStationDistance: 1.5
 --- !u!1 &8052559069264649562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,7 +2965,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 146
+  m_VersionIndex: 155
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
