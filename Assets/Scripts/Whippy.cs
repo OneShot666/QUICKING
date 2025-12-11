@@ -3,6 +3,14 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine.Serialization;
 
+// Personal TO DO List
+// R Add clients
+
+// Official TO DO List
+// R In-game interface allowing player to turn pages of a recipe book
+// R Non-diegetic interface to manage player’s hands : can carry ingredients and objects 
+// L Zoomable inventory menu
+// L Second, non-blocking display mode for the inventory, accessible by clicking the minimize icon
 public class Whippy : MonoBehaviour
 {
     [Header("Bulle de texte TMP")]
