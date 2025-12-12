@@ -1,8 +1,10 @@
 using UnityEngine;
 
 // Personal TO DO List
-// . Adding script to cook ingredients
-// ! Add kitchen scripts (check with R)
+// . Merging features and adding sounds
+// ! Make kitchen scripts work (interact, inventory management...)
+// ! Replace texts to interact with items by Buttons in world space (Pick up, Place, Slice or Cook)
+// -> Make "Pick up" and "Place" buttons to left and right based on items in hands
 // R Add clients + orders (hungry time + angry time)
 
 // Official TO DO List
@@ -15,12 +17,4 @@ using UnityEngine;
 // R Non-diegetic interface to manage player’s hands : can carry ingredients and objects 
 // L Zoomable inventory menu
 // L Second, non-blocking display mode for the inventory, accessible by clicking the minimize icon
-public class UIManager : MonoBehaviour {
-    void Start() {
-        
-    }
-
-    void Update() {
-        
-    }
-}
+public class UIManager : MonoBehaviour {}

@@ -284,7 +284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746411535791363894}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.4507446, y: 4.3403788, z: 1.0483687}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -359,7 +359,8 @@ GameObject:
   - component: {fileID: 1777854092905490343}
   - component: {fileID: 5251919387017873377}
   - component: {fileID: 8903261429695804421}
-  - component: {fileID: 6258953387955977095}
+  - component: {fileID: 5220650022093320868}
+  - component: {fileID: 5840362837937230178}
   m_Layer: 0
   m_Name: refrigerator_2
   m_TagString: Untagged
@@ -461,27 +462,46 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.9014869, y: 4.539468, z: 2.3336077}
   m_Center: {x: -0.00000029802322, y: 2.2697334, z: -0.11916274}
---- !u!65 &6258953387955977095
-BoxCollider:
+--- !u!114 &5220650022093320868
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3946417202984661435}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.7735558, y: 2.3518405, z: 2.773557}
-  m_Center: {x: -0.0002441413, y: 1.1759198, z: 2.75}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e72380afb9e4d42bf890e5f8cacbfad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCookingSpot: 0
+  isDoorOpen: 0
+  isLightOn: 0
+  interactionText: Open
+  openInteractionText: Close
+  doorObject: {fileID: 1746411535791363894}
+  rotationAxis: 1
+  closedAngle: 0
+  openedAngle: -110
+  doorAnimationSpeed: 180
+  facilityInventory: {fileID: 0}
+  facilityLight: {fileID: 0}
+  previewSlotCount: 4
+--- !u!114 &5840362837937230178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3946417202984661435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a00cb708fb74ccfa2be423563240127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotCount: 8
+  slots: []
+  slotTransforms: []
 --- !u!1 &5394621834512578578
 GameObject:
   m_ObjectHideFlags: 0

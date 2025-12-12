@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+// ! Add sound when done cooking + burning
+// ! Make utensil class that heritage from ItemBase
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation
 // ReSharper disable MemberCanBePrivate.Global
 namespace Food {
@@ -8,6 +10,7 @@ namespace Food {
     [SelectionBase]                                                             // Helps to select the root object in Scene View
     public abstract class ItemBase : MonoBehaviour {
         [Header("References")]
+        [Tooltip("Parent object where to place food items")]
         [SerializeField] protected Transform foodContainer;
 
         [Header("Data / UI Info")]
@@ -22,10 +25,14 @@ namespace Food {
 
         [Header("State")]
         [Tooltip("Is the item currently pickable?")]
-        protected bool IsInteractable = true;
+        protected bool isInteractable = true;
+
+        private void Awake() {
+            gameObject.layer = LayerMask.NameToLayer("Interactable");
+        }
 
         public virtual void OnInteract() {
-            if (!IsInteractable) return;
+            if (!isInteractable) return;
         
             OnCollect();                                                        // Default behavior: Collect the item
         }
@@ -36,7 +43,7 @@ namespace Food {
         }
 
         public virtual void OnEquip(Transform handTransform) {
-            IsInteractable = false;                                             // Cannot be picked up again while held
+            isInteractable = false;                                             // Cannot be picked up again while held
         
             if (TryGetComponent<Rigidbody>(out var rb)) rb.isKinematic = true;  // Stop physics
             if (TryGetComponent<Collider>(out var col)) col.enabled = false;    // Prevent collision with player
@@ -52,7 +59,7 @@ namespace Food {
         }
 
         public virtual void OnDrop() {                                          // Drop item
-            IsInteractable = true;
+            isInteractable = true;
 
             if (!foodContainer) {
                 GameObject container = GameObject.Find("Foods");
@@ -71,7 +78,7 @@ namespace Food {
         }
 
         public virtual void OnPlace(Transform surfacePoint) {                   // Place item in object
-            IsInteractable = true;
+            isInteractable = true;
             transform.SetParent(surfacePoint);                                  // Place item as children of object
 
             transform.localPosition = Vector3.zero;                             // Place object

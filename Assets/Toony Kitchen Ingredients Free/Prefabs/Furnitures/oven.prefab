@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 8061268191459614689}
   - component: {fileID: 7479173120630047900}
   m_Layer: 0
-  m_Name: leg_2.001
+  m_Name: leg_back_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,7 +202,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.0665071, z: -0.00019771147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7872842493804273914}
   m_Father: {fileID: 2337938504553800012}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3063886571581869622
@@ -442,7 +443,7 @@ GameObject:
   - component: {fileID: 2123624938929252692}
   - component: {fileID: 3555297716223239232}
   m_Layer: 0
-  m_Name: leg_2
+  m_Name: leg_front_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -528,7 +529,7 @@ GameObject:
   - component: {fileID: 3710075458004481608}
   - component: {fileID: 760313507317748391}
   m_Layer: 0
-  m_Name: switch_2 (1)
+  m_Name: switch_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -603,6 +604,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5565593070160048571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7872842493804273914}
+  m_Layer: 0
+  m_Name: PlacementPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7872842493804273914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5565593070160048571}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.29999995, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1076063882158332876}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6116976993846736855
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +647,7 @@ GameObject:
   - component: {fileID: 3987819357344433357}
   - component: {fileID: 1434825343870819206}
   m_Layer: 0
-  m_Name: leg_2.003
+  m_Name: leg_front_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -630,7 +662,7 @@ Transform:
   m_GameObject: {fileID: 6116976993846736855}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.98467463, y: 0.00000023841858, z: 0.9774188}
+  m_LocalPosition: {x: 0.98467463, y: 0, z: 0.9774188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -701,7 +733,7 @@ GameObject:
   - component: {fileID: 2323220335534928357}
   - component: {fileID: 4711124071589412924}
   m_Layer: 0
-  m_Name: switch_2
+  m_Name: switch_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -802,7 +834,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7257291201893646702}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.17821509, z: 1.3359919}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -875,7 +907,7 @@ GameObject:
   - component: {fileID: 5851502393277375363}
   - component: {fileID: 7108972690098005651}
   m_Layer: 0
-  m_Name: leg_2.002
+  m_Name: leg_back_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -959,7 +991,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5185615037989027645}
   m_Layer: 0
-  m_Name: legs_2
+  m_Name: legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -979,9 +1011,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 669361256061323515}
+  - {fileID: 4075115131924840618}
   - {fileID: 7636022639339305795}
   - {fileID: 4201966343274379357}
-  - {fileID: 4075115131924840618}
   m_Father: {fileID: 2337938504553800012}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8475328300771506500
@@ -1116,6 +1148,8 @@ GameObject:
   - component: {fileID: 2337938504553800012}
   - component: {fileID: 7323862342364488348}
   - component: {fileID: 327027517090114903}
+  - component: {fileID: 3647574369378834444}
+  - component: {fileID: 308443787341496196}
   m_Layer: 0
   m_Name: oven
   m_TagString: Untagged
@@ -1136,9 +1170,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4212658011225645413}
   - {fileID: 6541087853114907526}
   - {fileID: 7363424799238749358}
+  - {fileID: 4212658011225645413}
   - {fileID: 5185615037989027645}
   - {fileID: 5451114260761436732}
   - {fileID: 9037030093877443585}
@@ -1199,6 +1233,54 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3647574369378834444
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491763025541723936}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.77, y: 2.35, z: 2.77}
+  m_Center: {x: 0, y: 1.2, z: 0}
+--- !u!114 &308443787341496196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491763025541723936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e3606aca1a3414988801f19d3d904d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCookingSpot: 0
+  isDoorOpen: 0
+  isLightOn: 1
+  interactionText: Open
+  openInteractionText: Close
+  doorObject: {fileID: 7257291201893646702}
+  rotationAxis: 1
+  closedAngle: 0
+  openedAngle: 85
+  doorAnimationSpeed: 3
+  facilityInventory: {fileID: 0}
+  facilityLight: {fileID: 6452399075229221481}
+  previewSlotCount: 4
+  cookingSpeedMultiplier: 1.5
+  smokeParticles: {fileID: 0}
 --- !u!1 &8561504518357818802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,7 +1379,7 @@ GameObject:
   - component: {fileID: 2864748360469802504}
   - component: {fileID: 5469286195068785423}
   m_Layer: 0
-  m_Name: switch_2 (2)
+  m_Name: switch_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

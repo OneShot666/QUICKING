@@ -2,16 +2,27 @@
 using UnityEngine;
 using TMPro;
 
-namespace Whippy {
+// Personal TO DO List
+// R Add clients
+
+// Official TO DO List
+// R In-game interface allowing player to turn pages of a recipe book
+// R Non-diegetic interface to manage player’s hands : can carry ingredients and objects 
+// L Zoomable inventory menu
+// L Second, non-blocking display mode for the inventory, accessible by clicking the minimize icon
+// ReSharper disable CanSimplifyDictionaryLookupWithTryGetValue
+namespace  Whippy {
     public class Whippy : MonoBehaviour {
         [Header("Bulle de texte TMP")]
         public TMP_Text speechBubbleText;
         public GameObject speechBubble;
 
         [System.Serializable]
-        public class SpeechListEntry {
+        public class SpeechListEntry
+        {
             public string listName;
-            [TextArea] public List<string> speeches;
+            [TextArea]
+            public List<string> speeches;
         }
 
         [Header("Listes de textes nommées")]
@@ -27,20 +38,24 @@ namespace Whippy {
         private int _currentSpeechIndex;
         private float _speechTimer;
 
-        void Awake() {
+        void Awake()
+        {
             _speechLists.Clear();
-            foreach (var entry in speechListEntries) {
+            foreach (var entry in speechListEntries)
+            {
                 if (!_speechLists.ContainsKey(entry.listName))
                     _speechLists.Add(entry.listName, entry.speeches);
             }
         }
 
-        void Start() {
+        void Start()
+        {
             ShowCurrentSpeech();
             _speechTimer = 0f;
         }
 
-        void Update() {
+        void Update()
+        {
             if (!canInteract) return;
 
             // Avancer seulement si le timer est écoulé
@@ -48,51 +63,64 @@ namespace Whippy {
             bool timerReady = _speechTimer >= speechDuration;
 
             // Passage à la bulle suivante par clic (seulement si timer écoulé)
-            if (timerReady && Input.GetMouseButtonDown(0)) {
+            if (timerReady && Input.GetMouseButtonDown(0))
+            {
                 NextSpeech();
                 _speechTimer = 0f;
                 return;
             }
 
             // Passage à la bulle suivante par timer automatique
-            if (useSpeechTimer && timerReady && GetActiveSpeechList().Count > 0 && speechBubble.activeSelf) {
+            if (useSpeechTimer && timerReady && GetActiveSpeechList().Count > 0 && speechBubble.activeSelf)
+            {
                 NextSpeech();
                 _speechTimer = 0f;
             }
         }
 
-        public void SetActiveSpeechList(string listName) {
-            if (_speechLists.ContainsKey(listName)) {
+        public void SetActiveSpeechList(string listName)
+        {
+            if (_speechLists.ContainsKey(listName))
+            {
                 activeSpeechListName = listName;
                 _currentSpeechIndex = 0;
                 ShowCurrentSpeech();
             }
         }
 
-        private List<string> GetActiveSpeechList() {
-            if (_speechLists.TryGetValue(activeSpeechListName, out var list))
-                return list;
+        private List<string> GetActiveSpeechList()
+        {
+            if (_speechLists.ContainsKey(activeSpeechListName))
+                return _speechLists[activeSpeechListName];
             return new List<string>();
         }
 
-        void ShowCurrentSpeech() {
+        void ShowCurrentSpeech()
+        {
             speechBubble.gameObject.SetActive(true);
             _speechTimer = 0f;
             var list = GetActiveSpeechList();
-            if (speechBubbleText && list.Count > 0 && _currentSpeechIndex < list.Count) {
+            if (speechBubbleText && list.Count > 0 && _currentSpeechIndex < list.Count)
+            {
                 speechBubbleText.text = list[_currentSpeechIndex];
-            } else if (speechBubbleText && list.Count > 0) {
+            }
+            else if (speechBubbleText && list.Count > 0)
+            {
                 speechBubbleText.text = ""; // Masquer la bulle à la fin
                 speechBubble.SetActive(false);
             }
         }
 
-        void NextSpeech() {
+        void NextSpeech()
+        {
             var list = GetActiveSpeechList();
-            if (_currentSpeechIndex < list.Count - 1) {
+            if (_currentSpeechIndex < list.Count - 1)
+            {
                 _currentSpeechIndex++;
                 ShowCurrentSpeech();
-            } else {
+            }
+            else
+            {
                 // Fin du tutoriel, masquer la bulle
                 speechBubbleText.text = "";
                 speechBubble.gameObject.SetActive(false);

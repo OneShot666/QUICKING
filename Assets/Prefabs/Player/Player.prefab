@@ -513,9 +513,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3509970414197345504}
+  - component: {fileID: 2129730431797460754}
   - component: {fileID: 7538368185825194091}
   - component: {fileID: 1065359300857887067}
   - component: {fileID: 2174021294152400211}
+  - component: {fileID: 8740074211189560008}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -543,6 +545,33 @@ Transform:
   - {fileID: 1097038000765781140}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &2129730431797460754
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7942964038861978347}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!114 &7538368185825194091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,12 +632,26 @@ MonoBehaviour:
   leftHand: {fileID: 8443797340374396450}
   rightHand: {fileID: 3183201889047884792}
   pickUpPrompt: {fileID: 0}
+  handUIManager: {fileID: 0}
   interactLayer:
     serializedVersion: 2
     m_Bits: 64
   interactionRadius: 4
   interactionOffset: {x: 0, y: 1, z: 0}
   workStationDistance: 1.5
+--- !u!114 &8740074211189560008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7942964038861978347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b06f4ca8e5b4a72b358d2a30cbe3aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionKey: 101
 --- !u!1 &8052559069264649562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,7 +3008,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 155
+  m_VersionIndex: 161
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3069,7 +3112,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &8512426209594560800
