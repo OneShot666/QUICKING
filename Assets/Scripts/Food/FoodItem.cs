@@ -27,6 +27,8 @@ namespace Food {
             public bool IsValid => resultingPrefab;                             // Check if transformation is possible
         }
 
+        public bool IsBurnt() => currentState == FoodState.Burnt;
+
         public bool CanBeSliced() => sliceResult.IsValid;
 
         public bool CanBeCooked() => cookResult.IsValid;

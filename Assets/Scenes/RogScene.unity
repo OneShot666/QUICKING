@@ -1308,6 +1308,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2807512059787250556, guid: e95e2d6ed56a5af4c92d985aef51cd8d, type: 3}
+      propertyPath: cookResult.processTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4643466584054242252, guid: e95e2d6ed56a5af4c92d985aef51cd8d, type: 3}
       propertyPath: m_Name
       value: Chicken_Raw

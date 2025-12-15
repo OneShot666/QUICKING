@@ -90,8 +90,13 @@ namespace Player {
 
                 if (candidate) {                                                // Check if it's closest one
                     if (candidate is ItemBase) finalScore -= 0.5f;              // Bonus distance for items
-                    else if (candidate is CuttingBoard) {                       // If surface
-                        if (rawDist <= workStationDistance) finalScore -= 2.0f; // Big bonus : score became low (close)
+                    else if (candidate is CuttingBoard) {                       // If cutting board
+                        CuttingBoard script = candidate.GetComponent<CuttingBoard>();
+                        ItemBase itemOnBoard = script.GetHeldItem();
+                        bool canSliceSomething = itemOnBoard is FoodItem food && food.CanBeSliced();
+
+                        if (rawDist <= workStationDistance && canSliceSomething)
+                            finalScore -= 2.0f;                                 // Apply bonus only if close and can cut
                     }
 
                     if (finalScore < minDistance) {

@@ -60,7 +60,7 @@ namespace Utensils {
             for (int i = 0; i < data.quantity; i++) {                           // Spawn cooked food
                 FoodItem newFood = Instantiate(data.resultingPrefab, GetPlacementTransform().position, Quaternion.identity);
                 newFood.OnPlace(GetPlacementTransform());
-                if (data.resultingPrefab.name.Contains("burnt") && burningSound.clip) burningSound.Play();
+                if (data.resultingPrefab.IsBurnt() && burningSound.clip) burningSound.Play();
                 else if (cookingSound.clip) cookingSound.Play();
             }
         }

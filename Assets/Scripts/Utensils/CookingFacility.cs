@@ -69,7 +69,7 @@ namespace Utensils {
         private void CookSlot(int slotIndex, FoodItem oldItem, FoodItem.TransformationData data) {
             FoodItem newItem = Instantiate(data.resultingPrefab);               // Get cooked result
             newItem.gameObject.SetActive(false);                                // Hide to avoid clipping or wrong placement
-            if (data.resultingPrefab.name.Contains("burnt") && burningSound.clip) burningSound.Play();
+            if (data.resultingPrefab.IsBurnt() && burningSound.clip) burningSound.Play();
             else if (cookingSound.clip) cookingSound.Play();
             Destroy(oldItem.gameObject);                                        // Remove previous item (ex: raw)
 
