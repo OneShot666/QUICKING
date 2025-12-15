@@ -10,9 +10,11 @@ namespace Utensils {
         public ParticleSystem cookingParticles;
         [Tooltip("Light to enable while cooking")]
         public Light cookingLight;
-        
+
         [Header("Cooking settings")]
         [SerializeField] private bool canGrabWhileCooking = true;
+        [SerializeField] private AudioSource cookingSound;
+        [SerializeField] private AudioSource burningSound;
 
         private bool _isCooking;                                                // To prevent starting twice
 
@@ -58,7 +60,8 @@ namespace Utensils {
             for (int i = 0; i < data.quantity; i++) {                           // Spawn cooked food
                 FoodItem newFood = Instantiate(data.resultingPrefab, GetPlacementTransform().position, Quaternion.identity);
                 newFood.OnPlace(GetPlacementTransform());
-                // ? [UX] Maybe add a small "Pop" force or sound here
+                if (data.resultingPrefab.name.Contains("burnt") && burningSound.clip) burningSound.Play();
+                else if (cookingSound.clip) cookingSound.Play();
             }
         }
 

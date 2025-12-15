@@ -16,6 +16,7 @@ namespace Player {
         [SerializeField] private Transform rightHand;
         [SerializeField] private InteractionPrompt pickUpPrompt;
         [SerializeField] private HandUIManager handUIManager;
+        [SerializeField] private AudioSource pickUpSound;
 
         [Header("Settings")]
         [Tooltip("Layer for items and surfaces")]
@@ -175,14 +176,18 @@ namespace Player {
             if (isRightHand) {
                 _rightHeldItem = item;
                 if (handUIManager) {
-                    if (item) handUIManager.SetRightHandItem(item.gameObject);
-                    else handUIManager.ClearRightHandItem();
+                    if (item) {
+                        if (pickUpSound.clip) pickUpSound.Play();
+                        handUIManager.SetRightHandItem(item.gameObject);
+                    } else handUIManager.ClearRightHandItem();
                 }
             } else {
                 _leftHeldItem = item;
                 if (handUIManager) {
-                    if (item) handUIManager.SetLeftHandItem(item.gameObject);
-                    else handUIManager.ClearLeftHandItem();
+                    if (item) {
+                        if (pickUpSound.clip) pickUpSound.Play();
+                        handUIManager.SetLeftHandItem(item.gameObject);
+                    } else handUIManager.ClearLeftHandItem();
                 }
             }
 

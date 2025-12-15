@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Personal TO DO List
-// . Merging features and adding sounds
+// . Merging features (pb with pick/placement functions)
 // ! Make kitchen scripts work (interact, inventory management...)
 // ! Replace texts to interact with items by Buttons in world space (Pick up, Place, Slice or Cook)
 // -> Make "Pick up" and "Place" buttons to left and right based on items in hands

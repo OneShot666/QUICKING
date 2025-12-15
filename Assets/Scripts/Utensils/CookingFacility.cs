@@ -6,11 +6,12 @@ using Food;
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation
 namespace Utensils {
     public class CookingFacility : KitchenFacility {
-        
         [Header("Cooking Settings")]
         [Tooltip("Multiplicateur de vitesse (2 = cuit 2x plus vite)")]
-        public float cookingSpeedMultiplier = 1.0f;
-        public ParticleSystem smokeParticles;
+        [SerializeField] private float cookingSpeedMultiplier = 1.0f;
+        [SerializeField] private ParticleSystem smokeParticles;
+        [SerializeField] private AudioSource cookingSound;
+        [SerializeField] private AudioSource burningSound;
 
         private bool _isCookingProcessRunning;
         private float[] _slotCookTimers;                                        // Timers of food items that are being cooked
@@ -68,6 +69,8 @@ namespace Utensils {
         private void CookSlot(int slotIndex, FoodItem oldItem, FoodItem.TransformationData data) {
             FoodItem newItem = Instantiate(data.resultingPrefab);               // Get cooked result
             newItem.gameObject.SetActive(false);                                // Hide to avoid clipping or wrong placement
+            if (data.resultingPrefab.name.Contains("burnt") && burningSound.clip) burningSound.Play();
+            else if (cookingSound.clip) cookingSound.Play();
             Destroy(oldItem.gameObject);                                        // Remove previous item (ex: raw)
 
             facilityInventory.SetItem(slotIndex, newItem);                      // Update new item

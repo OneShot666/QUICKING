@@ -32,7 +32,7 @@ namespace Utensils {
 
         private void Start() {
             if (!facilityInventory) facilityInventory = GetComponent<FacilityInventory>();
-            
+
             if (doorObject) {                                                   // Setup init door animation
                 _initialRotation = doorObject.transform.localRotation;
                 _targetAngle = isDoorOpen ? openedAngle : closedAngle;
@@ -74,7 +74,7 @@ namespace Utensils {
                 InventoryUIManager.Instance.HideFullContent();
             }
 
-            if (isLightOn && isCookingSpot) {                                   // Use/call CookingStation.cs
+            if (isLightOn && isCookingSpot) {                                   // ? Use/call CookingStation.cs
                 Debug.Log("Cooking Logic Start..."); 
             }
         }

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-// ! Add sound when done cooking + burning
 // ! Make utensil class that heritage from ItemBase
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation
 // ReSharper disable MemberCanBePrivate.Global

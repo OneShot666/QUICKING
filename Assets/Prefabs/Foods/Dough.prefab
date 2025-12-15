@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0173c015c3c448b88df1c79e7e9aeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodContainer: {fileID: 0}
   itemName: Dough
   itemDescription: Not cooked yet
   icon: {fileID: 0}
@@ -133,7 +134,7 @@ MonoBehaviour:
     quantity: 0
     processTime: 0
   cookResult:
-    resultingPrefab: {fileID: 0}
+    resultingPrefab: {fileID: -5584172545799341162, guid: 65dd6e6f2786f154ab2c3a220a5ed039, type: 3}
     quantity: 0
     processTime: 0
   eatResult:
