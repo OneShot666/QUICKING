@@ -1,9 +1,8 @@
 using UnityEngine;
 
 // Personal TO DO List
-// . Merging features (pb with pick/placement functions)
-// ! Make kitchen scripts work (interact, inventory management...)
-// ! Replace texts to interact with items by Buttons in world space (Pick up, Place, Slice or Cook)
+// . Fixing interaction buttons (Cook) and adding precision
+// ! Make kitchen scripts work (interact, inventory management...) + door animation
 // -> Make "Pick up" and "Place" buttons to left and right based on items in hands
 // R Add clients + orders (hungry time + angry time)
 

@@ -20,63 +20,44 @@ namespace UI {
         private Transform _leftOriginalParent;
         private Transform _rightOriginalParent;
 
-        void Start()
-        {
-            // Associer la vue caméra à la RawImage
-            if (leftHandCamera != null && leftHandRawImage != null)
-                leftHandRawImage.texture = leftHandCamera.targetTexture;
-            if (rightHandCamera != null && rightHandRawImage != null)
+        void Start() {
+            if (leftHandCamera && leftHandRawImage)
+                leftHandRawImage.texture = leftHandCamera.targetTexture;        // Associate camera to images
+            if (rightHandCamera && rightHandRawImage)
                 rightHandRawImage.texture = rightHandCamera.targetTexture;
         }
 
-        // Équipe un objet dans la main gauche
-        public void SetLeftHandItem(GameObject itemObject)
-        {
+        public void SetLeftHandItem(GameObject itemObject) {                    // Equip item in left hand
             ReplaceHandObject(ref _currentLeftObject, ref _leftOriginalParent, leftHandMeshSlot, itemObject);
         }
 
-        // Équipe un objet dans la main droite
-        public void SetRightHandItem(GameObject itemObject)
-        {
+        public void SetRightHandItem(GameObject itemObject) {                   // Equip item in right hand
             ReplaceHandObject(ref _currentRightObject, ref _rightOriginalParent, rightHandMeshSlot, itemObject);
         }
 
-        // Retire l'objet de la main gauche
-        public void ClearLeftHandItem()
-        {
+        public void ClearLeftHandItem() {                                       // Remove object from left hand
             RestoreHandObject(ref _currentLeftObject, ref _leftOriginalParent);
         }
 
-        // Retire l'objet de la main droite
-        public void ClearRightHandItem()
-        {
+        public void ClearRightHandItem() {                                      // Remove object from right hand
             RestoreHandObject(ref _currentRightObject, ref _rightOriginalParent);
         }
 
-        // Déplace l'objet dans le slot d'affichage
-        private void ReplaceHandObject(ref GameObject currentObject, ref Transform originalParent, Transform slot, GameObject itemObject)
-        {
+        private void ReplaceHandObject(ref GameObject currentObject, ref Transform originalParent, 
+            Transform slot, GameObject itemObject) {                            // Move object in display slot
             RestoreHandObject(ref currentObject, ref originalParent);
-            if (itemObject != null && slot != null)
-            {
+            if (itemObject && slot) {
                 originalParent = itemObject.transform.parent;
                 itemObject.transform.SetParent(slot);
                 itemObject.transform.localPosition = Vector3.zero;
                 itemObject.transform.localRotation = Quaternion.identity;
                 itemObject.transform.localScale = Vector3.one;
                 currentObject = itemObject;
-            }
-            else
-            {
-                currentObject = null;
-            }
+            } else currentObject = null;
         }
 
-        // Restaure l'objet à son parent d'origine
-        private void RestoreHandObject(ref GameObject currentObject, ref Transform originalParent)
-        {
-            if (currentObject != null && originalParent != null)
-            {
+        private void RestoreHandObject(ref GameObject currentObject, ref Transform originalParent) {    // Place item in old parent
+            if (currentObject && originalParent) {
                 currentObject.transform.SetParent(originalParent);
                 originalParent = null;
             }

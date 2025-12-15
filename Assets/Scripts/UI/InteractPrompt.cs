@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 
+// [UNUSED] Have been replaced by InteractionButtonMenuManager.cs
 namespace UI {
     public class InteractionPrompt : MonoBehaviour {
         [Header("References")]
@@ -26,7 +27,7 @@ namespace UI {
             canvas.enabled = true;
         }
 
-        public void Hide() {
+        private void Hide() {
             canvas.enabled = false;
         }
     }
