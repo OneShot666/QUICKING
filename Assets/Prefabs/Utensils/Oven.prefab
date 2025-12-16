@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 3023972740050764122}
   - component: {fileID: 2463864729497881620}
   - component: {fileID: 7334917662815548307}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Oven
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,8 +290,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.77, y: 2.35, z: 2.77}
-  m_Center: {x: 0, y: 1.2, z: 0}
+  m_Size: {x: 2.8, y: 2.4, z: 2.9}
+  m_Center: {x: 0, y: 1.2, z: 0.1}
 --- !u!82 &3023972740050764122
 AudioSource:
   m_ObjectHideFlags: 0
@@ -498,7 +498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e3606aca1a3414988801f19d3d904d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCookingSpot: 0
   isDoorOpen: 0
   isLightOn: 1
   interactionText: Open

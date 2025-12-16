@@ -1261,7 +1261,7 @@ GameObject:
   - component: {fileID: 2124709524155248855}
   - component: {fileID: 7752809545385433789}
   - component: {fileID: 2147360158596075741}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: refrigerator_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1362,8 +1362,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.9014866, y: 6.1214657, z: 2.3336074}
-  m_Center: {x: -0.00024408102, y: 3.0607324, z: -0.11914721}
+  m_Size: {x: 3, y: 6.2, z: 2.6}
+  m_Center: {x: 0, y: 3.1, z: 0.1}
 --- !u!114 &7752809545385433789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1376,11 +1376,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e72380afb9e4d42bf890e5f8cacbfad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCookingSpot: 0
   isDoorOpen: 0
   isLightOn: 0
-  interactionText: Open
-  openInteractionText: Close
+  interactionText: Open door
+  openInteractionText: Close door
   doorObject: {fileID: 1386020296386085355}
   rotationAxis: 1
   closedAngle: 0

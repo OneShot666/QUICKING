@@ -1,9 +1,8 @@
 using UnityEngine;
 
 // Personal TO DO List
-// . Fixing interaction buttons (Cook) and adding precision
-// ! Make kitchen scripts work (interact, inventory management...) + door animation
-// -> Make "Pick up" and "Place" buttons to left and right based on items in hands
+// . Adding progress bar when cutting/cooking
+// ! Make inventory scripts work (overlay, inventory management...)
 // R Add clients + orders (hungry time + angry time)
 
 // Official TO DO List

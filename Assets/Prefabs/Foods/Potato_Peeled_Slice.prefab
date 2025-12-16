@@ -123,14 +123,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0173c015c3c448b88df1c79e7e9aeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodContainer: {fileID: 0}
   itemName: Potato Peeled Slice
   itemDescription: Chopped in pieces
   icon: {fileID: 0}
   itemType: 0
   currentState: 1
   sliceResult:
-    resultingPrefab: {fileID: -4499268300807045926, guid: 09119d6bd8f836a498c20bd88e32819c, type: 3}
-    quantity: 15
+    resultingPrefab: {fileID: 3099578750701944197, guid: 7828ad3f853baab42bef8700b6a7f966, type: 3}
+    quantity: 1
     processTime: 10
   cookResult:
     resultingPrefab: {fileID: 1465906093028572494, guid: e27d6edbca745a24ea520a1261c2c42e, type: 3}

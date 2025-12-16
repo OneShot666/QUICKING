@@ -25,8 +25,11 @@ namespace Utensils {
         public override void Interact() {
             base.Interact();                                                    // Open/close door
 
-            if (!isDoorOpen && isLightOn) TryStartCooking();                    // Check if can cook items
-            else StopCookingVisuals();                                          // Stop cooking items
+            if (!isDoorOpen) {
+                isLightOn = true;
+                if (facilityLight) facilityLight.enabled = true;
+                TryStartCooking();                                              // Check if can cook items
+            } else StopCookingVisuals();                                        // Stop cooking items
         }
 
         private void TryStartCooking() {
@@ -69,12 +72,11 @@ namespace Utensils {
         private void CookSlot(int slotIndex, FoodItem oldItem, FoodItem.TransformationData data) {
             FoodItem newItem = Instantiate(data.resultingPrefab);               // Get cooked result
             newItem.gameObject.SetActive(false);                                // Hide to avoid clipping or wrong placement
-            if (data.resultingPrefab.IsBurnt() && burningSound.clip) burningSound.Play();
-            else if (cookingSound.clip) cookingSound.Play();
+            if (data.resultingPrefab.IsBurnt() && burningSound && burningSound.clip) burningSound.Play();
+            else if (cookingSound && cookingSound.clip) cookingSound.Play();
             Destroy(oldItem.gameObject);                                        // Remove previous item (ex: raw)
 
             facilityInventory.SetItem(slotIndex, newItem);                      // Update new item
-            Debug.Log($"[Oven] Slot {slotIndex} finished cooking: {oldItem.GetName()} became {newItem.GetName()}"); // !!!
         }
 
         private void StopCookingVisuals() {

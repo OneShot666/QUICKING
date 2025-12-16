@@ -123,14 +123,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0173c015c3c448b88df1c79e7e9aeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodContainer: {fileID: 0}
   itemName: Potato Cooked
   itemDescription: Cooked to perfection
   icon: {fileID: 0}
   itemType: 0
   currentState: 2
   sliceResult:
-    resultingPrefab: {fileID: 8152738244801333640, guid: 7913e5512b9509e48ac44a58c8d087b4, type: 3}
-    quantity: 15
+    resultingPrefab: {fileID: 8256989763145833876, guid: 31aef2b35e89a6e4e9a4c8501a8288f1, type: 3}
+    quantity: 1
     processTime: 8
   cookResult:
     resultingPrefab: {fileID: -9030886151666982360, guid: 35334d41e8f6b8047a72fdd723979830, type: 3}

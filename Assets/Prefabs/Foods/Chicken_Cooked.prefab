@@ -297,15 +297,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0173c015c3c448b88df1c79e7e9aeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodContainer: {fileID: 0}
   itemName: Chicken Cooked
   itemDescription: Cooked to perfection
   icon: {fileID: 0}
   itemType: 0
   currentState: 2
   sliceResult:
-    resultingPrefab: {fileID: 0}
-    quantity: 0
-    processTime: 0
+    resultingPrefab: {fileID: 4354051322000102723, guid: 295510cb09491d645a7a612a174a13fa, type: 3}
+    quantity: 2
+    processTime: 5
   cookResult:
     resultingPrefab: {fileID: 38959092805888422, guid: e8f20b6e4024d2f47ac47baa52d93d17, type: 3}
     quantity: 1

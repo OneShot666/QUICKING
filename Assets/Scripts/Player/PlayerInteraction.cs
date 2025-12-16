@@ -68,12 +68,20 @@ namespace Player {
                     if (candidate is ItemBase item && (item == _rightHeldItem || item == _leftHeldItem)) 
                         continue;                                               // If items already in hands
 
-                    float dist = Vector3.Distance(detectionCenter, candidate.transform.position);
+                    float rawDist = Vector3.Distance(detectionCenter, candidate.transform.position);
+                    float finalScore = rawDist;
 
-                    // if (candidate is ItemBase) dist -= 0.5f;                    // Bonus for item on the ground
+                    if (candidate is ItemBase) finalScore -= 0.5f;                    // Bonus for item on the ground
+                    else if (candidate is CuttingBoard board) {
+                        ItemBase itemOnBoard = board.GetHeldItem();
+                        if (itemOnBoard is FoodItem f && f.CanBeSliced()) finalScore -= 2.0f;
+                    } else if (candidate is CookingStation stove) {
+                        ItemBase itemOnStove = stove.GetHeldItem();
+                        if (itemOnStove is FoodItem f && f.CanBeCooked()) finalScore -= 2.0f;
+                    }
 
-                    if (dist < minDistance) {
-                        minDistance = dist;
+                    if (finalScore < minDistance) {
+                        minDistance = finalScore;
                         closestInteractable = candidate;
                     }
                 }
@@ -92,19 +100,38 @@ namespace Player {
             }
 
             _currentOptions.Clear();
-            string targetName = _currentInteractable.gameObject.name.Replace("(Clone)", "").Trim();    // Get proper name
+            string targetName = _currentInteractable.gameObject.name
+                .Replace("(Clone)", "").Replace("_", " ").Trim();               // Get proper name
 
-            if (_currentInteractable is ItemBase item) {                        // Pick up item
+            if (_currentInteractable is ItemBase item) {                        // Pick up item option
                 if (!_rightHeldItem || !_leftHeldItem) {
                     string handText = !_rightHeldItem ? "(Right)" : "(Left)";
                     _currentOptions.Add(new InteractionOption($"Pick up {item.GetName()} {handText}", () => PickUpItem(item)));
+                }
+
+                CuttingBoard parentBoard = item.GetComponentInParent<CuttingBoard>();
+                if (parentBoard && item is FoodItem food && food.CanBeSliced() &&
+                !parentBoard.IsCutting) {                                       // If item on cutting board and bpard isn't busy
+                    _currentOptions.Add(new InteractionOption($"Slice {food.GetName()}", 
+                        () => { SliceFood(parentBoard); UpdateActionsUI(); }));
+                }
+
+                CookingStation parentStove = item.GetComponentInParent<CookingStation>();
+                if (parentStove && item is FoodItem rawFood && rawFood.CanBeCooked() &&
+                !parentStove.IsCooking) {                                       // If item in cooking station and station isn't busy
+                    _currentOptions.Add(new InteractionOption($"Cook {rawFood.GetName()}", 
+                        () => { CookFood(parentStove); UpdateActionsUI(); }));
                 }
             } else if (_currentInteractable is BaseFacilityInteraction facility) {  // Interact with facility
                 _currentOptions.Add(new InteractionOption(facility.GetInteractionPrompt(), 
                     () => { facility.Interact(); UpdateActionsUI(); }));
 
-                if (facility is CookingFacility { isDoorOpen: false, isLightOn: true }) // . Test function
-                    _currentOptions.Add(new InteractionOption($"Turn off {targetName}", () => facility.Interact()));
+                if (facility is KitchenFacility { isDoorOpen: true } kitchen)
+                    _currentOptions.Add(new InteractionOption($"Open inventory", () => kitchen.OpenInventory()));
+
+                if (facility is CookingFacility { isDoorOpen: false, isLightOn: true }) // To turn off facilities
+                    _currentOptions.Add(new InteractionOption($"Turn off {targetName}", 
+                        () => { facility.Interact(); UpdateActionsUI(); }));
             } else if (_currentInteractable is ItemSurface surface) {           // Interact with surface
                 bool isAvailable = surface.IsAvailable();
 
@@ -122,17 +149,17 @@ namespace Player {
                 ItemBase itemOnSurface = surface.GetHeldItem();
 
                 if (itemOnSurface is FoodItem food) {
-                    if (surface is CuttingBoard board && food.CanBeSliced()) {
+                    if (surface is CuttingBoard board && food.CanBeSliced() && !board.IsCutting) {
                         _currentOptions.Add(new InteractionOption($"Slice {food.GetName()}", 
                             () => { SliceFood(board); UpdateActionsUI(); }));
                     }
 
-                    if (surface is CookingStation stove && food.CanBeCooked()) {
+                    if (surface is CookingStation stove && food.CanBeCooked() && !stove.IsCooking) {
                         _currentOptions.Add(new InteractionOption($"Cook {food.GetName()}", 
                             () => { CookFood(stove); UpdateActionsUI(); }));
                     }
 
-                    if (!_rightHeldItem && !_leftHeldItem) {                    // If at least a hand is free
+                    if (!_rightHeldItem || !_leftHeldItem) {                    // If at least a hand is free
                         _currentOptions.Add(new InteractionOption($"Pick up {food.GetName()}", () => PickUpItem(food)));
                     }
                 }
@@ -151,7 +178,7 @@ namespace Player {
             } else if (!_leftHeldItem) {
                 if (pickUpSound?.clip) pickUpSound.Play();
                 _leftHeldItem = item;
-                handUIManager?.SetRightHandItem(item.gameObject);
+                handUIManager?.SetLeftHandItem(item.gameObject);
                 item.OnEquip(leftHand);
             }
 
@@ -161,10 +188,16 @@ namespace Player {
         private void PlaceChooseItem(ItemSurface surface, ItemBase item, bool isRightHand) {
             if (!item) return;
 
-            item.OnPlace(surface.GetPlacementTransform());
+            if (isRightHand) {
+                _rightHeldItem = null;                                          // Empty hand
+                handUIManager?.ClearRightHandItem();
+            } else {
+                _leftHeldItem = null;
+                handUIManager?.ClearLeftHandItem();
+                
+            }
 
-            if (isRightHand) _rightHeldItem = null;                             // Empty hand
-            else _leftHeldItem = null;
+            item.OnPlace(surface.GetPlacementTransform());
             
             UpdateActionsUI();
         }

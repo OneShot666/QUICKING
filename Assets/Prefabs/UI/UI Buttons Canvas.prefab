@@ -80,7 +80,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 4, y: 2}
+  m_CellSize: {x: 5, y: 2}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -122,7 +122,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 15, y: 5}
-  m_SizeDelta: {x: 8, y: 4}
+  m_SizeDelta: {x: 10, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8462786448257296810
 Canvas:
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 10
+  m_DynamicPixelsPerUnit: 20
   m_PresetInfoIsWorld: 1
 --- !u!114 &4596027252863377605
 MonoBehaviour:
@@ -203,4 +203,4 @@ MonoBehaviour:
   menuContainer: {fileID: 7378436085555875588}
   buttonPrefab: {fileID: 7878787304141945021, guid: 969621520bd70d546ae9862452d635fa, type: 3}
   buttonsParent: {fileID: 2802829758185167698}
-  uiOffset: {x: 4, y: 2, z: -2}
+  uiOffset: {x: 5, y: 6, z: -2}

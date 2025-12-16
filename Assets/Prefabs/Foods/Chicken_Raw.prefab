@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0173c015c3c448b88df1c79e7e9aeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodContainer: {fileID: 0}
   itemName: Chicken Raw
   itemDescription: Not cooked yet
   icon: {fileID: 0}
@@ -219,7 +220,7 @@ MonoBehaviour:
   sliceResult:
     resultingPrefab: {fileID: 2123016152629827613, guid: ca694fc8643b66640814106bf50d375b, type: 3}
     quantity: 2
-    processTime: 10
+    processTime: 5
   cookResult:
     resultingPrefab: {fileID: 3342968067325191414, guid: d98ec21102ca3a64e9688393c9c9bae9, type: 3}
     quantity: 1
