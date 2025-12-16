@@ -8,6 +8,9 @@ namespace Utensils {
     public class KitchenFacility : BaseFacilityInteraction {
         public enum RotationAxis { X, Y, Z }
 
+        [Header("Visual references")]
+        public Light facilityLight;
+
         [Header("Settings")]
         public bool isDoorOpen;
         public bool isLightOn;
@@ -24,13 +27,12 @@ namespace Utensils {
 
         [Header("Inventory")]
         public FacilityInventory facilityInventory;
-        public Light facilityLight;
         public int previewSlotCount = 5;
 
         private Quaternion _initialRotation;
         private float _currentAngle;
 
-        private void Start() {
+        protected virtual void Start() {
             if (!facilityInventory) facilityInventory = GetComponent<FacilityInventory>();
 
             if (doorObject) {                                                   // Setup init door animation

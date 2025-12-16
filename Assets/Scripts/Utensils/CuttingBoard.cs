@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Food;
+using UI;
 
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation
 namespace Utensils {
     public class CuttingBoard : ItemSurface {
-        [Header("Visual Feedback")]
+        [Header("Visual references")]
         [Tooltip("Particles to play while cutting (chips, etc.)")]
         [SerializeField] private ParticleSystem cuttingParticles;
         [Tooltip("Sound to play (Looping chopping sound is best)")]
@@ -13,9 +14,22 @@ namespace Utensils {
 
         [Header("Settings")]
         [SerializeField] private bool canGrabWhileCutting = true;
+        [SerializeField] private float cuttingSpeedMultiplier = 1.0f;
 
+        [Header("UI")]
+        [SerializeField] private WorldProgressBar progressBarPrefab;
+
+        private WorldProgressBar _progressBar;
         private bool _isCutting;
+
         public bool IsCutting => _isCutting;
+
+        private void Start() {
+            if (progressBarPrefab) {
+                _progressBar = Instantiate(progressBarPrefab, transform.position, Quaternion.identity);
+                _progressBar.Hide();                                            // Hide by default
+            }
+        }
 
         private void OnDisable() {
             if (_isCutting) StopCuttingEffects(null);
@@ -32,7 +46,8 @@ namespace Utensils {
             _isCutting = true;
             
             var sliceData = food.GetSliceInfo();                                // Get food info
-            float timer = sliceData.processTime;
+            float duration = sliceData.processTime;                             // Total duration
+            float timer = duration;                                             // Remaining time
 
             if (timer <= 0) {                                                   // Instant create sliced food
                 CompleteSlicing(food, sliceData);
@@ -40,9 +55,9 @@ namespace Utensils {
                 yield break;
             }
 
-            if (cuttingParticles) cuttingParticles.Play();                      // Visual ON
-            if (cuttingSound && !cuttingSound.isPlaying) cuttingSound.Play();
-
+            if (cuttingParticles) cuttingParticles.Play();                      // Show particles
+            if (cuttingSound && !cuttingSound.isPlaying) cuttingSound.Play();   // Play sound
+            if (_progressBar) _progressBar.Show(transform);                     // Show progress bar
             if (!canGrabWhileCutting) food.GetComponent<Collider>().enabled = false;    // Lock item : can't grab it while cutting
 
             while (timer > 0) {
@@ -51,7 +66,11 @@ namespace Utensils {
                     yield break;
                 }
 
-                timer -= Time.deltaTime;
+                timer -= Time.deltaTime * cuttingSpeedMultiplier;
+
+                float progress = 1f - timer / duration;
+                if (_progressBar) _progressBar.UpdateProgress(progress);
+
                 yield return null;
             }
 
@@ -74,6 +93,7 @@ namespace Utensils {
         private void StopCuttingEffects(FoodItem food) {                        // Visual OFF
             if (cuttingParticles) cuttingParticles.Stop();
             if (cuttingSound) cuttingSound.Stop();
+            if (_progressBar) _progressBar.Hide();
             if (food) food.GetComponent<Collider>().enabled = true;
             _isCutting = false;
         }

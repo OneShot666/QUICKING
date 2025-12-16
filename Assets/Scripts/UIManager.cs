@@ -1,8 +1,7 @@
 using UnityEngine;
 
 // Personal TO DO List
-// . Adding progress bar when cutting/cooking
-// ! Make inventory scripts work (overlay, inventory management...)
+// . Making inventory scripts work (overlay, inventory management...)
 // R Add clients + orders (hungry time + angry time)
 
 // Official TO DO List

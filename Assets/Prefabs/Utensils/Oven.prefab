@@ -514,6 +514,7 @@ MonoBehaviour:
   smokeParticles: {fileID: 0}
   cookingSound: {fileID: 3023972740050764122}
   burningSound: {fileID: 2463864729497881620}
+  progressBarPrefab: {fileID: 4879863352344575874, guid: 6a3c6ba18d8dbaf4da8e6471210c588d, type: 3}
 --- !u!1 &845872948411113495
 GameObject:
   m_ObjectHideFlags: 0

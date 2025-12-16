@@ -1,24 +1,37 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Food;
+using UI;
 
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation
 namespace Utensils {
     public class CookingStation : ItemSurface {
-        [Header("Visual Feedback")]
+        [Header("Visual references")]
         [Tooltip("Particles to play while cooking")]
-        public ParticleSystem cookingParticles;
+        [SerializeField] private ParticleSystem cookingParticles;
         [Tooltip("Light to turn on while cooking")]
-        public Light cookingLight;
-
-        [Header("Cooking settings")]
-        [SerializeField] private bool canGrabWhileCooking = true;
+        [SerializeField] private Light cookingLight;
         [SerializeField] private AudioSource cookingSound;
         [SerializeField] private AudioSource burningSound;
 
+        [Header("Cooking settings")]
+        [SerializeField] private bool canGrabWhileCooking = true;
+        [SerializeField] private float cookingSpeedMultiplier = 1.0f;
+
+        [Header("UI")]
+        [SerializeField] private WorldProgressBar progressBarPrefab;
+
+        private WorldProgressBar _progressBar;
         private bool _isCooking;                                                // To prevent starting twice
         
         public bool IsCooking => _isCooking;
+
+        private void Start() {
+            if (progressBarPrefab) {
+                _progressBar = Instantiate(progressBarPrefab, transform.position, Quaternion.identity);
+                _progressBar.Hide();                                            // Hide by default
+            }
+        }
 
         private void OnDisable() {                                              // Clean state
             if (_isCooking) StopCookingEffects(null);
@@ -37,11 +50,12 @@ namespace Utensils {
             _isCooking = true;
             
             var cookData = food.GetCookInfo();                                  // Get data
-            float timer = cookData.processTime;
+            float duration = cookData.processTime;                              // Total duration
+            float timer = duration;                                             // Remaining time
 
-            if (cookingParticles) cookingParticles.Play();                      // Visuals ON
-            if (cookingLight) cookingLight.enabled = true;
-
+            if (cookingParticles) cookingParticles.Play();                      // Show particles
+            if (cookingLight) cookingLight.enabled = true;                      // Turn on light
+            if (_progressBar) _progressBar.Show(transform);                     // Show progress bar
             if(!canGrabWhileCooking) food.GetComponent<Collider>().enabled = false;  // Lock item : can't grab it while cooking
 
             while (timer > 0) {                                                 // Timer Loop
@@ -50,7 +64,11 @@ namespace Utensils {
                     yield break;
                 }
 
-                timer -= Time.deltaTime;
+                timer -= Time.deltaTime * cookingSpeedMultiplier;
+
+                float progress = 1f - timer / duration;
+                if (_progressBar) _progressBar.UpdateProgress(progress);
+
                 yield return null;
             }
 
@@ -74,9 +92,10 @@ namespace Utensils {
         }
 
         private void StopCookingEffects(FoodItem food) {                        // Visual OFF
-            if(food) food.GetComponent<Collider>().enabled = true;
             if (cookingParticles) cookingParticles.Stop();
             if (cookingLight) cookingLight.enabled = false;
+            if (_progressBar) _progressBar.Hide();
+            if (food) food.GetComponent<Collider>().enabled = true;
             _isCooking = false;
         }
     }

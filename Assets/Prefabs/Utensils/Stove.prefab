@@ -5305,6 +5305,7 @@ MonoBehaviour:
   canGrabWhileCooking: 1
   cookingSound: {fileID: 1625923239767659620}
   burningSound: {fileID: 862657257710710396}
+  progressBarPrefab: {fileID: 4879863352344575874, guid: 6a3c6ba18d8dbaf4da8e6471210c588d, type: 3}
 --- !u!1 &2753382170206798808
 GameObject:
   m_ObjectHideFlags: 0

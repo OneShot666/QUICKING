@@ -8,8 +8,8 @@ namespace UI {
         [SerializeField] private Image fillImage;
 
         [Header("Settings")]
-        [SerializeField] private Vector3 offset = new(0, 1.5f, 0);              // Above object by default
         [SerializeField] private bool hideOnComplete = true;
+        [SerializeField] private Vector3 offset = new(0, 1.5f, 0);              // Above object by default
 
         private Transform _target;
         private Camera _cam;
@@ -23,6 +23,7 @@ namespace UI {
             if (canvas.enabled && _target) {
                 transform.position = _target.position + offset;                 // Follow object
                 transform.rotation = Quaternion.LookRotation(transform.position - _cam.transform.position); // Look at camera
+                // transform.rotation = _cam.transform.rotation;                // For instant facing camera
             }
         }
 
