@@ -498,6 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e3606aca1a3414988801f19d3d904d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  facilityLight: {fileID: 5247428201353348854}
   isDoorOpen: 0
   isLightOn: 1
   interactionText: Open
@@ -507,13 +508,15 @@ MonoBehaviour:
   closedAngle: 0
   openedAngle: 85
   doorAnimationSpeed: 3
+  isAutoClose: 1
+  customCloseDistance: 0
   facilityInventory: {fileID: 2441642929257713613}
-  facilityLight: {fileID: 5247428201353348854}
   previewSlotCount: 4
-  cookingSpeedMultiplier: 1.5
   smokeParticles: {fileID: 0}
   cookingSound: {fileID: 3023972740050764122}
   burningSound: {fileID: 2463864729497881620}
+  canGrabWhileCooking: 1
+  cookingSpeedMultiplier: 1.5
   progressBarPrefab: {fileID: 4879863352344575874, guid: 6a3c6ba18d8dbaf4da8e6471210c588d, type: 3}
 --- !u!1 &845872948411113495
 GameObject:
@@ -586,7 +589,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848813058297649134}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.9764706, g: 0.5902022, b: 0, a: 1}

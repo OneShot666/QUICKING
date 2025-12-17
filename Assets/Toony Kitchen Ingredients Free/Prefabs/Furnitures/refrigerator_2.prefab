@@ -474,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e72380afb9e4d42bf890e5f8cacbfad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  facilityLight: {fileID: 0}
   isDoorOpen: 0
   isLightOn: 0
   interactionText: Open door
@@ -483,8 +484,9 @@ MonoBehaviour:
   closedAngle: 0
   openedAngle: -110
   doorAnimationSpeed: 180
+  isAutoClose: 1
+  customCloseDistance: 0
   facilityInventory: {fileID: 0}
-  facilityLight: {fileID: 0}
   previewSlotCount: 4
 --- !u!114 &5840362837937230178
 MonoBehaviour:

@@ -51,7 +51,8 @@ namespace Food {
             if (lowerName.Contains("cooked")) currentState = FoodState.Cooked;
             else if (lowerName.Contains("burnt")) currentState = FoodState.Burnt;
             else if (lowerName.Contains("slice") || lowerName.Contains("chopped")) currentState = FoodState.Chopped;
-            else if (lowerName.Contains("eaten") || lowerName.Contains("naked") || lowerName.Contains("waste")) currentState = FoodState.Eaten;
+            else if (lowerName.Contains("eaten") || lowerName.Contains("naked") || 
+                lowerName.Contains("waste") || lowerName.Contains("empty")) currentState = FoodState.Eaten;
             else currentState = FoodState.Raw;
         }
 

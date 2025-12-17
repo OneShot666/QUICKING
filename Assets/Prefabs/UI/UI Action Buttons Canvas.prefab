@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4596027252863377605}
   - component: {fileID: 6882650151507861831}
   m_Layer: 5
-  m_Name: UI Buttons Canvas
+  m_Name: UI Action Buttons Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

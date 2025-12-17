@@ -728,15 +728,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHand: {fileID: 8443797340374396450}
   rightHand: {fileID: 3183201889047884792}
-  pickUpPrompt: {fileID: 0}
+  buttonsManager: {fileID: 0}
   handUIManager: {fileID: 0}
   pickUpSound: {fileID: 1249211547600521340}
   interactLayer:
     serializedVersion: 2
     m_Bits: 64
-  interactionRadius: 4
+  interactionRadius: 5
   interactionOffset: {x: 0, y: 1, z: 0}
-  workStationDistance: 1.5
 --- !u!1 &8052559069264649562
 GameObject:
   m_ObjectHideFlags: 0
@@ -3093,7 +3092,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 182
+  m_VersionIndex: 203
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

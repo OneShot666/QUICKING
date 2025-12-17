@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine;
 using Inventory;
 using System;
+using Player;
 using Food;
 using UI;
 
+// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 namespace Utensils {
     public class KitchenFacility : BaseFacilityInteraction {
         public enum RotationAxis { X, Y, Z }
@@ -25,11 +29,19 @@ namespace Utensils {
         [Tooltip("Speed of door animation (in degrees per second)")]
         public float doorAnimationSpeed = 80f;
 
+        [Header("Auto-Close Settings")]
+        public bool isAutoClose = true;
+        [Tooltip("If set to 0, use player's range + 50%. Otherwise, use entered value.")]
+        public float customCloseDistance; 
+
         [Header("Inventory")]
         public FacilityInventory facilityInventory;
         public int previewSlotCount = 5;
 
+        private PlayerInteraction _playerScript; 
         private Quaternion _initialRotation;
+        private Transform _playerTransform;
+        private float _lastInteractionTime;
         private float _currentAngle;
 
         protected virtual void Start() {
@@ -42,6 +54,12 @@ namespace Utensils {
             
             isLightOn = isDoorOpen;
             if (facilityLight) facilityLight.enabled = isLightOn;
+
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj) {
+                _playerTransform = playerObj.transform;
+                _playerScript = playerObj.GetComponent<PlayerInteraction>();
+            }
         }
 
         protected virtual void Update() {
@@ -58,6 +76,24 @@ namespace Utensils {
 
                 doorObject.transform.localRotation = _initialRotation * Quaternion.AngleAxis(_currentAngle, axis);  // Fluid animation
             }
+
+            if (isDoorOpen) CheckAutoClose();
+        }
+
+        private void CheckAutoClose() {
+            if (Time.time < _lastInteractionTime + 0.2f) return;                // Anti-spam clic
+
+            if (isAutoClose && _playerTransform && _playerScript) {
+                float dist = Vector3.Distance(transform.position, _playerTransform.position);
+                float closeThreshold = customCloseDistance > 0 ? customCloseDistance : _playerScript.InteractionRadius * 1.5f;
+                if (dist > closeThreshold) {                                    // Check distance from player
+                    Interact();                                                 // Close door and inventory
+                    return;
+                }
+            }
+
+            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame &&
+                !IsMouseOverUI()) Interact();                                   // Check click outside of window
         }
 
         public override string GetInteractionPrompt() {
@@ -69,6 +105,8 @@ namespace Utensils {
         }
 
         public override void Interact() {
+            _lastInteractionTime = Time.time;
+
             ToggleDoor();
             
             if (isDoorOpen) OpenInventory();
@@ -103,19 +141,33 @@ namespace Utensils {
         public override void OnLoseFocus() {                                    // When player move away
             InventoryUIManager.Instance.HidePreview();                          // Hide UI preview
 
-            if (isDoorOpen) {
-                ToggleDoor();                                                   // Close door
-                CloseInventory();                                               // Hide inventory
-            }
+            // if (isDoorOpen) Interact();
         }
 
         public ItemBase[] GetPreviewItems() {
             if (!facilityInventory) return Array.Empty<ItemBase>();
+
             int count = Mathf.Min(previewSlotCount, facilityInventory.slots.Length);
             ItemBase[] preview = new ItemBase[count];
             for (int i = 0; i < count; i++)
                 preview[i] = facilityInventory.slots[i].item;
+
             return preview;
+        }
+        
+        private bool IsMouseOverUI() {
+            PointerEventData pointerData = new PointerEventData(EventSystem.current) {
+                position = Mouse.current.position.ReadValue()                   // Create virtual pointer at mouse position
+            };
+
+            System.Collections.Generic.List<RaycastResult> results = new System.Collections.Generic.List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, results);               // Throw all raycasts
+
+            foreach (RaycastResult result in results)                           // Check what have been touch
+                if (result.gameObject.layer == LayerMask.NameToLayer("UI"))     // If touched UI object
+                    return true; 
+
+            return false;                                                       // Touch something else
         }
     }
 }

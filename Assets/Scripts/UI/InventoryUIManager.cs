@@ -9,19 +9,22 @@ namespace UI {
     public class InventoryUIManager : MonoBehaviour {
         public static InventoryUIManager Instance;
 
-        [Header("UI References")]
-        public RawImage[] previewSlotImages; 
-        public RawImage[] fullSlotImages;
-        public GameObject previewContainer;
-        public GameObject fullContainer;
+        [Header("Generation Settings")]
+        [Tooltip("Le prefab de ton Slot (doit contenir un RawImage enfant pour l'item)")]
+        public GameObject inventorySlotPrefab;
+        [Tooltip("Object with Grid Layout Group for preview")]
+        public Transform previewContentPanel;
+        [Tooltip("Object with Grid Layout Group for full inventory")]
+        public Transform inventoryContentPanel;
 
         [Header("3D Preview System")]
         public Camera previewCamera;
         public RenderTexture previewRenderTexture;                              // Texture "pad"
         public Transform previewStage;                                          // Where to tp object (away from scene)
+        public Vector3 itemRotation = new(-15, 45, 0);
 
         [Header("Settings")]
-        public Vector2 cursorOffset = new(20, -20); // Décalage souris
+        public Vector2 cursorOffset = new(20, -20);                             // Mouse offset
 
         private readonly List<Texture2D> _generatedTextures = new();            // For cleaner code and avoid memory leak
         private bool _isFullInventoryOpen;
@@ -33,14 +36,14 @@ namespace UI {
         }
 
         void Update() {
-            if (_isPreviewActive && previewContainer.activeSelf)                // Follow mouse for preview
-                MoveContainerToMouse(previewContainer);
+            if (_isPreviewActive && previewContentPanel.gameObject.activeInHierarchy) // Follow mouse for preview
+                MoveContainerToMouse(previewContentPanel.gameObject);
         }
 
         private void MoveContainerToMouse(GameObject container) {
             Vector2 mousePos = Input.mousePosition;
             RectTransform rect = container.GetComponent<RectTransform>();
-            
+
             float pivotX = mousePos.x / Screen.width;                           // Keep UI on screen
             float pivotY = mousePos.y / Screen.height;
             rect.pivot = new Vector2(pivotX, pivotY);                           // Avoid pivot to exit screen
@@ -50,43 +53,81 @@ namespace UI {
 
         public void ShowPreview(ItemBase[] items) {
             if (_isFullInventoryOpen) return;
-            
-            previewContainer.SetActive(true);
+
+            previewContentPanel.gameObject.SetActive(true);
+            if (previewContentPanel) previewContentPanel.parent.gameObject.SetActive(true);
             _isPreviewActive = true;
-            
+
             StopAllCoroutines();
-            StartCoroutine(GenerateSnapshots(items, previewSlotImages));
+            RawImage[] uiSlots = PrepareSlots(previewContentPanel, items.Length);
+            StartCoroutine(GenerateSnapshots(items, uiSlots));
         }
 
         public void HidePreview() {
-            previewContainer.SetActive(false);
+            if (previewContentPanel.parent) previewContentPanel.parent.gameObject.SetActive(false);
+            else previewContentPanel.gameObject.SetActive(false);
+
             _isPreviewActive = false;
         }
 
         public void ShowFullContent(ItemBase[] items) {
             _isFullInventoryOpen = true;
-            fullContainer.SetActive(true);
-            HidePreview();
+
+            inventoryContentPanel.gameObject.SetActive(true);
+            if (inventoryContentPanel.parent) inventoryContentPanel.parent.gameObject.SetActive(true);
             
+            HidePreview();
+
             StopAllCoroutines();
-            StartCoroutine(GenerateSnapshots(items, fullSlotImages));
+
+            RawImage[] uiSlots = PrepareSlots(inventoryContentPanel, items.Length);
+            StartCoroutine(GenerateSnapshots(items, uiSlots));
         }
 
         public void HideFullContent() {
             _isFullInventoryOpen = false;
-            fullContainer.SetActive(false);
+
+            if (inventoryContentPanel.parent) inventoryContentPanel.parent.gameObject.SetActive(false);
+            else inventoryContentPanel.gameObject.SetActive(false);
+
+            HidePreview();
             ClearGeneratedTextures();                                           // Clean memory if close inventory
         }
 
+        private RawImage[] PrepareSlots(Transform gridParent, int neededCount) {
+            List<RawImage> validSlots = new List<RawImage>();
+
+            while (gridParent.childCount < neededCount) {                       // Check have enough slots
+                Instantiate(inventorySlotPrefab, gridParent);
+            }
+
+            for (int i = 0; i < gridParent.childCount; i++) {                   // Among all children
+                Transform child = gridParent.GetChild(i);
+
+                if (i < neededCount) {                                          // Show if require
+                    child.gameObject.SetActive(true);
+
+                    RawImage img = child.GetComponentInChildren<RawImage>();    // Show item
+                    if (img) validSlots.Add(img);
+                    else Debug.LogError("Slot prefab don't have RawImage children !"); // !!!
+                } else child.gameObject.SetActive(false);                       // Disable if not require
+            }
+
+            return validSlots.ToArray();
+        }
+
         private IEnumerator GenerateSnapshots(ItemBase[] items, RawImage[] uiSlots) {
-            foreach (var slot in uiSlots) slot.gameObject.SetActive(false);     // Disable all inventory slots
             ClearGeneratedTextures();                                           // Clean old textures
 
             for (int i = 0; i < uiSlots.Length; i++) {
-                if (i >= items.Length || !items[i]) continue;                   // If not item to display
+                if (i >= items.Length || !items[i]) {                           // If not item to display
+                    uiSlots[i].color = Color.clear;
+                    continue;
+                }
 
                 ItemBase item = items[i];
                 GameObject obj = item.gameObject;
+                uiSlots[i].color = Color.white;                                 // Reset color
 
                 var originalParent = obj.transform.parent;                      // Save state
                 var originalPos = obj.transform.position;
@@ -97,9 +138,10 @@ namespace UI {
                 obj.SetActive(true);                                            // Update preview
                 obj.transform.SetParent(previewStage);
                 obj.transform.localPosition = Vector3.zero;
-                obj.transform.localRotation = Quaternion.identity;
+                obj.transform.localRotation = Quaternion.Euler(itemRotation);
                 obj.transform.localScale = Vector3.one;                         // Adjust scale size
-                obj.layer = LayerMask.NameToLayer("Preview");                   // Use specific layer
+                int previewLayer = LayerMask.NameToLayer("Preview");            // Use specific layer
+                if (previewLayer != -1) SetLayerRecursive(obj, previewLayer);
 
                 previewCamera.Render();                                         // Manual render
 
@@ -112,7 +154,6 @@ namespace UI {
 
                 _generatedTextures.Add(snapshot);                               // Add snapshot to avoid recreating it
                 uiSlots[i].texture = snapshot;
-                uiSlots[i].gameObject.SetActive(true);
 
                 obj.transform.SetParent(originalParent);                        // Restaure default state
                 obj.transform.position = originalPos;
@@ -122,6 +163,11 @@ namespace UI {
 
                 if (items.Length > 10) yield return null;                       // Wait a frame to avoid freeze
             }
+        }
+
+        private static void SetLayerRecursive(GameObject obj, int layer) {
+            obj.layer = layer;
+            foreach (Transform child in obj.transform) child.gameObject.layer = layer;
         }
 
         private void ClearGeneratedTextures() {

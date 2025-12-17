@@ -33,6 +33,8 @@ namespace Player {
         private ItemBase _rightHeldItem;
         private ItemBase _leftHeldItem;
 
+        public float InteractionRadius => interactionRadius;
+
         private void Awake() {
             _playerInput = GetComponent<PlayerInput>();
             _dropAction = _playerInput.actions["Drop"];
