@@ -33,9 +33,13 @@ namespace Food {
 
         public bool CanBeCooked() => cookResult.IsValid;
 
+        public bool CanBeEaten() => eatResult.IsValid;
+
         public TransformationData GetSliceInfo() => sliceResult;                // Result of cut
 
         public TransformationData GetCookInfo() => cookResult;                  // Result of cook
+
+        public TransformationData GetEatenInfo() => eatResult;                  // Result of eaten
 
         protected override void Reset() {
             base.Reset();

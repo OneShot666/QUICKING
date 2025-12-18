@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4373357169179144236}
   - component: {fileID: 1992758991068579699}
   - component: {fileID: 4599590588344796483}
+  - component: {fileID: 2653854435224759135}
   m_Layer: 5
   m_Name: RightHandImage
   m_TagString: Untagged
@@ -65,13 +66,27 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 0ff853811bda7d941a1592d913959975, type: 2}
+  m_Texture: {fileID: 8400000, guid: 82828702e4bf21a449bfe2349994b357, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
     height: 1
+--- !u!114 &2653854435224759135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2950534332401703264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164f499b46467994782ad8e3dd8c32c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
+  itemImage: {fileID: 4599590588344796483}
 --- !u!1 &3141263994339297651
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,6 +98,7 @@ GameObject:
   - component: {fileID: 5517026746656162752}
   - component: {fileID: 1270342507481739409}
   - component: {fileID: 7065104463375470481}
+  - component: {fileID: 5753952007426570376}
   m_Layer: 5
   m_Name: LeftHandImage
   m_TagString: Untagged
@@ -144,6 +160,20 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &5753952007426570376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3141263994339297651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164f499b46467994782ad8e3dd8c32c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
+  itemImage: {fileID: 7065104463375470481}
 --- !u!1 &3885478860337766348
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -480,7 +510,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -537,12 +567,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42cfe72eef1b4e66af7d49e3bd14c9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandRawImage: {fileID: 7065104463375470481}
-  rightHandRawImage: {fileID: 4599590588344796483}
-  leftHandCamera: {fileID: 0}
-  rightHandCamera: {fileID: 0}
-  leftHandMeshSlot: {fileID: 0}
-  rightHandMeshSlot: {fileID: 0}
+  leftHandSlot: {fileID: 5753952007426570376}
+  rightHandSlot: {fileID: 2653854435224759135}
+  previewCamera: {fileID: 0}
+  previewRenderTexture: {fileID: 8400000, guid: 82828702e4bf21a449bfe2349994b357, type: 2}
+  previewItemParent: {fileID: 0}
+  itemRotation: {x: -15, y: 45, z: 0}
 --- !u!114 &3704089144762708772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,7 +649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

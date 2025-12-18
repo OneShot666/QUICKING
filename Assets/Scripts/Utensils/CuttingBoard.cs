@@ -26,7 +26,8 @@ namespace Utensils {
 
         private void Start() {
             if (progressBarPrefab) {
-                _progressBar = Instantiate(progressBarPrefab, transform.position, Quaternion.identity);
+                _progressBar = Instantiate(progressBarPrefab, transform.position, Quaternion.identity, transform);
+                _progressBar.transform.localScale = Vector3.one;
                 _progressBar.Hide();                                            // Hide by default
             }
         }

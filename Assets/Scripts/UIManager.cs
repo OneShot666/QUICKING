@@ -1,13 +1,10 @@
 using UnityEngine;
 
 // Personal TO DO List
-// . Don't allow to pick up items from closed facilities
-// ! Move Progress bar object in their facility
-// ! Add bin object + script
-// ! Add food spawner + script
+// . Adding food spawner + script
 // ! Add utensils + script from ItemBase
-// ! Make prefabs of everything + kitchen
 // ! Add utensil to create dishes
+// ! Make prefabs of everything + kitchen
 // R Add clients + orders (hungry time + angry time)
 
 // Official TO DO List

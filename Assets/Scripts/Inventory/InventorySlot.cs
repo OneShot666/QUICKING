@@ -3,7 +3,7 @@
 namespace Inventory {
     [System.Serializable]
     public class InventorySlot {
-        public bool IsEmpty => !item;
         public ItemBase item;
+        public bool IsEmpty => !item;
     }
 }

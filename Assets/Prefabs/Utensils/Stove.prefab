@@ -5115,9 +5115,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -5212,9 +5212,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -5302,9 +5302,10 @@ MonoBehaviour:
   placementPoint: {fileID: 48719865408615486}
   cookingParticles: {fileID: 3816525131890326937}
   cookingLight: {fileID: 6683112393160100775}
-  canGrabWhileCooking: 1
   cookingSound: {fileID: 1625923239767659620}
   burningSound: {fileID: 862657257710710396}
+  canGrabWhileCooking: 1
+  cookingSpeedMultiplier: 1
   progressBarPrefab: {fileID: 4879863352344575874, guid: 6a3c6ba18d8dbaf4da8e6471210c588d, type: 3}
 --- !u!1 &2753382170206798808
 GameObject:

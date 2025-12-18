@@ -22,6 +22,8 @@ namespace Utensils {
         private WorldProgressBar _progressBar;
         private bool _isCooking;
         private float[] _slotCookTimers;                                        // Timers of food items that are being cooked
+        
+        public bool IsCooking => _isCooking;
 
         protected override void Start() {
             base.Start();
@@ -29,7 +31,8 @@ namespace Utensils {
             if (facilityInventory) _slotCookTimers = new float[facilityInventory.slotCount];    // Init timers list
 
             if (progressBarPrefab) {
-                _progressBar = Instantiate(progressBarPrefab, transform.position, Quaternion.identity);
+                _progressBar = Instantiate(progressBarPrefab, transform.position, Quaternion.identity, transform);
+                _progressBar.transform.localScale = Vector3.one;
                 _progressBar.Hide();                                            // Hide by default
             }
         }
@@ -37,16 +40,22 @@ namespace Utensils {
         public override void Interact() {
             base.Interact();                                                    // Open/close door
 
-            if (!isDoorOpen) {
-                isLightOn = true;
-                if (facilityLight) facilityLight.enabled = true;
-                TryStartCooking();                                              // Check if can cook items
-            } else StopCookingProcess();                                        // Stop cooking items
+            if (!isDoorOpen && isLightOn) TryStartCooking();                    // Check if can cook items
+            else StopCookingProcess();                                          // Stop cooking items
         }
 
         private void TryStartCooking() {
-            if (!_isCooking && facilityInventory)
-                StartCoroutine(StartCookingInventory());                      // Start cooking (if not started yet)
+            if (_isCooking || !facilityInventory) return;                       // if already cooking (or ref pb)
+
+            bool hasFoodToCook = false;
+            foreach (var slot in facilityInventory.slots) {                     // Check if has something to cook
+                if (!slot.IsEmpty && slot.item is FoodItem food && food.CanBeCooked()) {
+                    hasFoodToCook = true;
+                    break;
+                }
+            }
+
+            if (hasFoodToCook) StartCoroutine(StartCookingInventory());
         }
 
         private IEnumerator StartCookingInventory() {
@@ -100,20 +109,29 @@ namespace Utensils {
             newItem.gameObject.SetActive(false);                                // Hide to avoid clipping or wrong placement
             if (data.resultingPrefab.IsBurnt() && burningSound && burningSound.clip) burningSound.Play();
             else if (cookingSound && cookingSound.clip) cookingSound.Play();
-            Destroy(oldItem.gameObject);                                        // Remove previous item (ex: raw)
 
+            Destroy(oldItem.gameObject);                                        // Remove previous item (ex: raw)
             facilityInventory.SetItem(slotIndex, newItem);                      // Update new item
         }
 
         private void StopCookingProcess() {
+            _isCooking = false;
+
             if (smokeParticles) smokeParticles.Stop();
-            if (facilityLight) facilityLight.enabled = false;
             if (cookingSound) cookingSound.Stop();
             if (burningSound) burningSound.Stop();
             if (_progressBar) _progressBar.Hide();
-            foreach (var slot in facilityInventory.slots)
-                if (slot is { item: FoodItem food } && food) food.GetComponent<Collider>().enabled = true;
-            _isCooking = false;
+
+            if (facilityInventory)                                              // Enable physics on items again
+                foreach (var slot in facilityInventory.slots)
+                    if (slot is { item: FoodItem food } && food) food.GetComponent<Collider>().enabled = true;
+        }
+
+        public void TurnOff() {
+            lastInteractionTime = Time.time;
+            isLightOn = false;
+            if (facilityLight) facilityLight.enabled = false;
+            StopCookingProcess();
         }
     }
 }

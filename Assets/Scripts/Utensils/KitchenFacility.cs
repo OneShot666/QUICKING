@@ -31,8 +31,10 @@ namespace Utensils {
 
         [Header("Auto-Close Settings")]
         public bool isAutoClose = true;
-        [Tooltip("If set to 0, use player's range + 50%. Otherwise, use entered value.")]
-        public float customCloseDistance; 
+        [Tooltip("If set to 0, use player's range + bonus. Otherwise, use entered value.")]
+        public float customCloseDistance;
+        [Tooltip("Bonus of interaction range (in percent)")]
+        [Range(0, 100)] public int bonusRange;
 
         [Header("Inventory")]
         public FacilityInventory facilityInventory;
@@ -41,7 +43,7 @@ namespace Utensils {
         private PlayerInteraction _playerScript; 
         private Quaternion _initialRotation;
         private Transform _playerTransform;
-        private float _lastInteractionTime;
+        protected float lastInteractionTime;
         private float _currentAngle;
 
         protected virtual void Start() {
@@ -81,11 +83,13 @@ namespace Utensils {
         }
 
         private void CheckAutoClose() {
-            if (Time.time < _lastInteractionTime + 0.2f) return;                // Anti-spam clic
+            if (Time.time < lastInteractionTime + 0.5f) return;                // Anti-spam clic
 
             if (isAutoClose && _playerTransform && _playerScript) {
                 float dist = Vector3.Distance(transform.position, _playerTransform.position);
-                float closeThreshold = customCloseDistance > 0 ? customCloseDistance : _playerScript.InteractionRadius * 1.5f;
+                float bonusPercent = 1 + bonusRange / 100f;
+                float closeThreshold = customCloseDistance > 0 ? customCloseDistance : 
+                    _playerScript.InteractionRadius * bonusPercent;
                 if (dist > closeThreshold) {                                    // Check distance from player
                     Interact();                                                 // Close door and inventory
                     return;
@@ -101,11 +105,11 @@ namespace Utensils {
         }
 
         public override void Preview() {
-            throw new NotImplementedException();
+            // L Show preview panel
         }
 
         public override void Interact() {
-            _lastInteractionTime = Time.time;
+            lastInteractionTime = Time.time;
 
             ToggleDoor();
             
@@ -121,10 +125,9 @@ namespace Utensils {
         }
 
         public void OpenInventory() {
-            if (facilityInventory) {                                            // UI inventory logic
-                ItemBase[] allItems = facilityInventory.GetAllItems();
-                InventoryUIManager.Instance.ShowFullContent(allItems);
-            }
+            lastInteractionTime = Time.time;                                   // Update again for CookingFacility
+
+            if (facilityInventory) InventoryUIManager.Instance.ShowFullContent(facilityInventory);
         }
 
         public void CloseInventory() {
@@ -140,8 +143,6 @@ namespace Utensils {
 
         public override void OnLoseFocus() {                                    // When player move away
             InventoryUIManager.Instance.HidePreview();                          // Hide UI preview
-
-            // if (isDoorOpen) Interact();
         }
 
         public ItemBase[] GetPreviewItems() {

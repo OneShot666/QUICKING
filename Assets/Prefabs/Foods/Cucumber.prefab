@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7817480977221563870}
   - component: {fileID: 7552300485268779407}
   - component: {fileID: 838686422035287220}
+  - component: {fileID: -8547060066869749066}
   - component: {fileID: -851419174769969055}
   m_Layer: 0
   m_Name: Cucumber
@@ -87,6 +88,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &-8547060066869749066
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371548093751397130}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.88882786
+  m_Height: 0.579201
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.021201655, z: 0.000000059604645}
 --- !u!114 &-851419174769969055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodContainer: {fileID: 0}
-  itemName: cucumber
+  itemName: Cucumber
   itemDescription: Not cooked yet
   icon: {fileID: 0}
   itemType: 0

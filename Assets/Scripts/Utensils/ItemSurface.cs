@@ -13,7 +13,7 @@ namespace Utensils {
             gameObject.layer = LayerMask.NameToLayer("Interactable");
         }
 
-        public bool IsAvailable() {                                             // Check if place is free or not
+        public virtual bool IsAvailable() {                                     // Check if place is free or not
             Transform holder = GetPlacementTransform();
             if (holder.childCount == 0) return true;                            // Logic based on children in object
             return !holder.GetComponentInChildren<ItemBase>();

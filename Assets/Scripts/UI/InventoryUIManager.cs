@@ -2,37 +2,46 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
+using Inventory;
+using Player;
 using Food;
 
+// Manage inventory for kitchen facilities
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation
 namespace UI {
     public class InventoryUIManager : MonoBehaviour {
-        public static InventoryUIManager Instance;
-
-        [Header("Generation Settings")]
-        [Tooltip("Le prefab de ton Slot (doit contenir un RawImage enfant pour l'item)")]
+        [Header("Inventory References")]
         public GameObject inventorySlotPrefab;
         [Tooltip("Object with Grid Layout Group for preview")]
         public Transform previewContentPanel;
         [Tooltip("Object with Grid Layout Group for full inventory")]
         public Transform inventoryContentPanel;
 
-        [Header("3D Preview System")]
+        [Header("Preview References (Preview place)")]
         public Camera previewCamera;
         public RenderTexture previewRenderTexture;                              // Texture "pad"
         public Transform previewStage;                                          // Where to tp object (away from scene)
-        public Vector3 itemRotation = new(-15, 45, 0);
 
-        [Header("Settings")]
+        [Header("Inventory Settings")]
+        [Tooltip("Rotate showed items")]
+        public Vector3 itemRotation = new(-15, 45, 0);
+        [Tooltip("Offset of preview screen to mouse")]
         public Vector2 cursorOffset = new(20, -20);                             // Mouse offset
 
         private readonly List<Texture2D> _generatedTextures = new();            // For cleaner code and avoid memory leak
+        private FacilityInventory _currentOpenedInventory;
+        private PlayerInteraction _player;
         private bool _isFullInventoryOpen;
         private bool _isPreviewActive;
+
+        public static InventoryUIManager Instance;
         
         void Awake() {
             Instance = this;
             if (previewCamera) previewCamera.enabled = false;                   // Turn off preview camera by default
+            
+            var obj = GameObject.FindGameObjectWithTag("Player");
+            if (obj) _player = obj.GetComponent<PlayerInteraction>();
         }
 
         void Update() {
@@ -70,17 +79,19 @@ namespace UI {
             _isPreviewActive = false;
         }
 
-        public void ShowFullContent(ItemBase[] items) {
-            _isFullInventoryOpen = true;
+        public void ShowFullContent(FacilityInventory inventory) {
+            _currentOpenedInventory = inventory;                                // Memorize inventory
+            ItemBase[] items = inventory.GetAllItems();
 
+            _isFullInventoryOpen = true;
             inventoryContentPanel.gameObject.SetActive(true);
             if (inventoryContentPanel.parent) inventoryContentPanel.parent.gameObject.SetActive(true);
-            
-            HidePreview();
 
+            HidePreview();
             StopAllCoroutines();
 
             RawImage[] uiSlots = PrepareSlots(inventoryContentPanel, items.Length);
+            SetupSlotLogic(uiSlots, inventory);
             StartCoroutine(GenerateSnapshots(items, uiSlots));
         }
 
@@ -93,30 +104,15 @@ namespace UI {
             HidePreview();
             ClearGeneratedTextures();                                           // Clean memory if close inventory
         }
-
-        private RawImage[] PrepareSlots(Transform gridParent, int neededCount) {
-            List<RawImage> validSlots = new List<RawImage>();
-
-            while (gridParent.childCount < neededCount) {                       // Check have enough slots
-                Instantiate(inventorySlotPrefab, gridParent);
-            }
-
-            for (int i = 0; i < gridParent.childCount; i++) {                   // Among all children
-                Transform child = gridParent.GetChild(i);
-
-                if (i < neededCount) {                                          // Show if require
-                    child.gameObject.SetActive(true);
-
-                    RawImage img = child.GetComponentInChildren<RawImage>();    // Show item
-                    if (img) validSlots.Add(img);
-                    else Debug.LogError("Slot prefab don't have RawImage children !"); // !!!
-                } else child.gameObject.SetActive(false);                       // Disable if not require
-            }
-
-            return validSlots.ToArray();
+        
+        public void RefreshContentIfOpen(FacilityInventory inventory) {         // If item is add from anywhere
+            if (_isFullInventoryOpen && _currentOpenedInventory == inventory)
+                ShowFullContent(inventory);
         }
 
         private IEnumerator GenerateSnapshots(ItemBase[] items, RawImage[] uiSlots) {
+            foreach (var slot in uiSlots) slot.color = Color.clear;             // Make slots invisibles
+
             ClearGeneratedTextures();                                           // Clean old textures
 
             for (int i = 0; i < uiSlots.Length; i++) {
@@ -154,6 +150,7 @@ namespace UI {
 
                 _generatedTextures.Add(snapshot);                               // Add snapshot to avoid recreating it
                 uiSlots[i].texture = snapshot;
+                uiSlots[i].color = Color.white;                                 // Return previous color
 
                 obj.transform.SetParent(originalParent);                        // Restaure default state
                 obj.transform.position = originalPos;
@@ -162,6 +159,57 @@ namespace UI {
                 obj.layer = originalLayer;
 
                 if (items.Length > 10) yield return null;                       // Wait a frame to avoid freeze
+            }
+        }
+
+        private RawImage[] PrepareSlots(Transform gridParent, int neededCount) {
+            List<RawImage> validImages = new List<RawImage>();
+
+            while (gridParent.childCount < neededCount) {                       // Check have enough slots
+                Instantiate(inventorySlotPrefab, gridParent);
+            }
+
+            for (int i = 0; i < gridParent.childCount; i++) {                   // Among all children
+                Transform child = gridParent.GetChild(i);
+
+                if (i < neededCount) {                                          // Show if require
+                    child.gameObject.SetActive(true);
+
+                    InventorySlotUI slot = child.GetComponent<InventorySlotUI>();
+                    if (slot && slot.itemImage) validImages.Add(slot.itemImage);
+                    else {                                                      // ! Fallback (remove after test)
+                        var img = child.GetComponentInChildren<RawImage>();
+                        validImages.Add(img);
+                    }
+                } else child.gameObject.SetActive(false);                       // Disable if not require
+            }
+
+            return validImages.ToArray();
+        }
+        
+        private void SetupSlotLogic(RawImage[] uiImages, FacilityInventory inventory) {
+            for (int i = 0; i < uiImages.Length; i++) {
+                InventorySlotUI slot = uiImages[i].GetComponentInParent<InventorySlotUI>();
+
+                if (slot) {
+                    int index = i;                                              // Get current index
+                    ItemBase item = inventory.GetItem(i);                       // Get item to display (can be null)
+                    slot.Setup(item, () => OnSlotClicked(index, inventory));
+                }
+            }
+        }
+        
+        private void OnSlotClicked(int index, FacilityInventory inventory) {
+            if (!_player) return;                                               // Basic checks
+            ItemBase item = inventory.GetItem(index);
+            if (!item) return;
+
+            bool isRightFree = _player.CanEquipInHand(true);
+            bool isLeftFree = _player.CanEquipInHand(false);
+            if (isRightFree || isLeftFree) {                                    // If a hand is free
+                inventory.RemoveItem(index);                                    // Remove from facility inventory
+                _player.PickUpItem(item); 
+                ShowFullContent(inventory);                                     // Update inventory
             }
         }
 

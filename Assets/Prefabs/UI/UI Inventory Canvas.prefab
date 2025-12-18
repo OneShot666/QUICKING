@@ -138,7 +138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4371964155640337853, guid: 2966e5eae5015f441968791b28073f7f, type: 3}
       propertyPath: m_RaycastTarget
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4403846492433391965, guid: 2966e5eae5015f441968791b28073f7f, type: 3}
       propertyPath: m_Pivot.x
@@ -220,11 +220,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7844633022075774848, guid: 2966e5eae5015f441968791b28073f7f, type: 3}
+      propertyPath: m_Name
+      value: Title Text
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 156117105093707212, guid: 2966e5eae5015f441968791b28073f7f, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1771441932400188327}
+    - targetCorrespondingSourceObject: {fileID: 156117105093707212, guid: 2966e5eae5015f441968791b28073f7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6816033367583687824}
   m_SourcePrefab: {fileID: 100100000, guid: 2966e5eae5015f441968791b28073f7f, type: 3}
+--- !u!1 &5708591491038994342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 156117105093707212, guid: 2966e5eae5015f441968791b28073f7f, type: 3}
+  m_PrefabInstance: {fileID: 5553604752627685994}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1771441932400188327
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708591491038994342}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &6816033367583687824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708591491038994342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 1
+  m_MinWidth: 50
+  m_MinHeight: 50
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!224 &7274240273799807407 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3017716195570146245, guid: 2966e5eae5015f441968791b28073f7f, type: 3}
@@ -325,7 +372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467632238422932446, guid: 007f395ba1d7fdb4f998475e074d2d63, type: 3}
       propertyPath: m_RaycastTarget
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6395807816304824231, guid: 007f395ba1d7fdb4f998475e074d2d63, type: 3}
       propertyPath: m_Name

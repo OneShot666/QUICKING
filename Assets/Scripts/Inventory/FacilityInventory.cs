@@ -48,6 +48,13 @@ namespace Inventory {
                 items[i] = slots[i].item;
             return items;
         }
+        
+        public bool HasSpace() {
+            foreach (var slot in slots) {
+                if (slot.IsEmpty) return true;
+            }
+            return false;
+        }
 
         public bool AddItem(ItemBase newItem) {
             for (int i = 0; i < slots.Length; i++) {                            // Look for empty slot

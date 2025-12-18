@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using Inventory;
 using Utensils;
 using Food;
 using UI;
@@ -61,19 +62,32 @@ namespace Player {
             MonoBehaviour closestInteractable = null;
             float minDistance = float.MaxValue;
             
+            bool handsFull = _rightHeldItem && _leftHeldItem;
+            
             foreach (var col in colliders) {                // If hold item, look for Surfaces. Else, look for Items
-                MonoBehaviour candidate = col.GetComponentInParent<ItemBase>();                     // Look for item first
-                if (!candidate) candidate = col.GetComponentInParent<BaseFacilityInteraction>();    // Then for facilities
-                if (!candidate) candidate = col.GetComponentInParent<ItemSurface>();                // And finally for surface
+                MonoBehaviour candidate = null;
+
+                ItemBase item = col.GetComponentInParent<ItemBase>();           // Look for item first
+                
+                if (item) {                                                     // Check if inside a kitchen facility
+                    KitchenFacility container = item.GetComponentInParent<KitchenFacility>();
+                    
+                    if (container && !container.isDoorOpen) item = null;        // If facility closed, can't pick item up
+                }
+
+                if (item && !handsFull && item != _rightHeldItem && item != _leftHeldItem)  // If at least a hand free
+                    candidate = item;                                           // If item isn't already in hands
+
+                if (!candidate) candidate = col.GetComponentInParent<ItemSurface>();                // Then for surface
+                if (!candidate) candidate = col.GetComponentInParent<BaseFacilityInteraction>();    // And finally for facilities
 
                 if (candidate) {                                                // Check if it's closest one
-                    if (candidate is ItemBase item && (item == _rightHeldItem || item == _leftHeldItem)) 
-                        continue;                                               // If items already in hands
+                    Vector3 closestPoint = col.ClosestPoint(detectionCenter);
+                    float dist = Vector3.Distance(detectionCenter, closestPoint);   // Closest distance from item to player
+                    float finalScore = dist;
 
-                    float rawDist = Vector3.Distance(detectionCenter, candidate.transform.position);
-                    float finalScore = rawDist;
-
-                    if (candidate is ItemBase) finalScore -= 0.5f;                    // Bonus for item on the ground
+                    if (candidate is ItemBase) finalScore -= 0.5f;              // Bonus for item on the ground
+                    else if (candidate is BaseFacilityInteraction) finalScore -= 1.0f;  // Bonus for facility
                     else if (candidate is CuttingBoard board) {
                         ItemBase itemOnBoard = board.GetHeldItem();
                         if (itemOnBoard is FoodItem f && f.CanBeSliced()) finalScore -= 2.0f;
@@ -106,14 +120,14 @@ namespace Player {
                 .Replace("(Clone)", "").Replace("_", " ").Trim();               // Get proper name
 
             if (_currentInteractable is ItemBase item) {                        // Pick up item option
-                if (!_rightHeldItem || !_leftHeldItem) {
-                    string handText = !_rightHeldItem ? "(Right)" : "(Left)";
+                if (CanEquipInHand(true) || CanEquipInHand(false)) {
+                    string handText = CanEquipInHand(true) ? "(Right)" : "(Left)";
                     _currentOptions.Add(new InteractionOption($"Pick up {item.GetName()} {handText}", () => PickUpItem(item)));
                 }
 
                 CuttingBoard parentBoard = item.GetComponentInParent<CuttingBoard>();
                 if (parentBoard && item is FoodItem food && food.CanBeSliced() &&
-                !parentBoard.IsCutting) {                                       // If item on cutting board and bpard isn't busy
+                !parentBoard.IsCutting) {                                       // If item on cutting board and board isn't busy
                     _currentOptions.Add(new InteractionOption($"Slice {food.GetName()}", 
                         () => { SliceFood(parentBoard); UpdateActionsUI(); }));
                 }
@@ -124,27 +138,29 @@ namespace Player {
                     _currentOptions.Add(new InteractionOption($"Cook {rawFood.GetName()}", 
                         () => { CookFood(parentStove); UpdateActionsUI(); }));
                 }
-            } else if (_currentInteractable is BaseFacilityInteraction facility) {  // Interact with facility
-                _currentOptions.Add(new InteractionOption(facility.GetInteractionPrompt(), 
-                    () => { facility.Interact(); UpdateActionsUI(); }));
-
-                if (facility is KitchenFacility { isDoorOpen: true } kitchen)
-                    _currentOptions.Add(new InteractionOption($"Open inventory", () => kitchen.OpenInventory()));
-
-                if (facility is CookingFacility { isDoorOpen: false, isLightOn: true }) // To turn off facilities
-                    _currentOptions.Add(new InteractionOption($"Turn off {targetName}", 
-                        () => { facility.Interact(); UpdateActionsUI(); }));
             } else if (_currentInteractable is ItemSurface surface) {           // Interact with surface
                 bool isAvailable = surface.IsAvailable();
+                if (surface is TrashBin binTest) print($"{binTest.name} : {isAvailable}");  // !!!
 
                 if (isAvailable) {                                              // Place item on surface
-                    if (_rightHeldItem) {
-                        string txt = $"Place {_rightHeldItem.GetName()} on {targetName}";
-                        _currentOptions.Add(new InteractionOption(txt, () => PlaceChooseItem(surface, _rightHeldItem, true)));
-                    }
-                    if (_leftHeldItem) {
-                        string txt = $"Place {_leftHeldItem.GetName()} on {targetName}";
-                        _currentOptions.Add(new InteractionOption(txt, () => PlaceChooseItem(surface, _leftHeldItem, false)));
+                    if (surface is TrashBin bin) {
+                        if (_rightHeldItem) {
+                            string txt = $"Throw {_rightHeldItem.GetName()}";
+                            _currentOptions.Add(new InteractionOption(txt, () => ThrowItemInBin(bin, _rightHeldItem, true)));
+                        }
+                        if (_leftHeldItem) {
+                            string txt = $"Throw {_leftHeldItem.GetName()}";
+                            _currentOptions.Add(new InteractionOption(txt, () => ThrowItemInBin(bin, _leftHeldItem, false)));
+                        }
+                    } else {
+                        if (_rightHeldItem) {
+                            string txt = $"Place {_rightHeldItem.GetName()} on {targetName}";
+                            _currentOptions.Add(new InteractionOption(txt, () => PlaceChooseItem(surface, _rightHeldItem, true)));
+                        }
+                        if (_leftHeldItem) {
+                            string txt = $"Place {_leftHeldItem.GetName()} on {targetName}";
+                            _currentOptions.Add(new InteractionOption(txt, () => PlaceChooseItem(surface, _leftHeldItem, false)));
+                        }
                     }
                 }
 
@@ -161,29 +177,83 @@ namespace Player {
                             () => { CookFood(stove); UpdateActionsUI(); }));
                     }
 
-                    if (!_rightHeldItem || !_leftHeldItem) {                    // If at least a hand is free
+                    if (CanEquipInHand(true) || CanEquipInHand(false)) {        // If at least a hand is free
                         _currentOptions.Add(new InteractionOption($"Pick up {food.GetName()}", () => PickUpItem(food)));
                     }
                 }
+            } else if (_currentInteractable is BaseFacilityInteraction facility) {  // Interact with facility
+                _currentOptions.Add(new InteractionOption(facility.GetInteractionPrompt(), 
+                    () => { facility.Interact(); UpdateActionsUI(); }));
+
+                if (facility is KitchenFacility { isDoorOpen: false } kitchen) {
+                    FacilityInventory inv = kitchen.facilityInventory;
+
+                    if (inv && inv.HasSpace()) {
+                        if (_rightHeldItem)
+                            _currentOptions.Add(new InteractionOption($"Put {_rightHeldItem.GetName()} in {targetName}", 
+                                () => StoreItemInFacility(inv, _rightHeldItem, true)));
+
+                        if (_leftHeldItem)
+                            _currentOptions.Add(new InteractionOption($"Put {_leftHeldItem.GetName()} in {targetName}", 
+                                () => StoreItemInFacility(inv, _leftHeldItem, false)));
+                    }
+                }
+
+                if (facility is CookingFacility { isDoorOpen: false, isLightOn: true } oven ) // To turn off facilities
+                    _currentOptions.Add(new InteractionOption($"Turn off {targetName}", 
+                        () => { oven.TurnOff(); UpdateActionsUI(); }));
             }
 
             if (_currentOptions.Count > 0) buttonsManager.Show(_currentInteractable.transform, _currentOptions);
             else buttonsManager.Hide();                                         // Update buttons menu
         }
 
-        private void PickUpItem(ItemBase item) {
-            if (!_rightHeldItem) {
+        public void PickUpItem(ItemBase item) {
+            if (CanEquipInHand(true)) {
                 if (pickUpSound?.clip) pickUpSound.Play();
                 _rightHeldItem = item;
-                handUIManager?.SetRightHandItem(item.gameObject);
+                handUIManager?.SetRightHandItem(item);
                 item.OnEquip(rightHand);
-            } else if (!_leftHeldItem) {
+            } else if (CanEquipInHand(false)) {
                 if (pickUpSound?.clip) pickUpSound.Play();
                 _leftHeldItem = item;
-                handUIManager?.SetLeftHandItem(item.gameObject);
+                handUIManager?.SetLeftHandItem(item);
                 item.OnEquip(leftHand);
             }
 
+            UpdateActionsUI();
+        }
+        
+        private void StoreItemInFacility(FacilityInventory inventory, ItemBase item, bool isRightHand) {
+            if (!item) return;
+
+            if (inventory.AddItem(item)) {                                      // Try to add item
+                if (isRightHand) {                                              // If success, update hands
+                    _rightHeldItem = null;
+                    handUIManager?.ClearRightHandItem();
+                } else {
+                    _leftHeldItem = null;
+                    handUIManager?.ClearLeftHandItem();
+                }
+
+                UpdateActionsUI();                                              // Update action button
+                
+                InventoryUIManager.Instance.RefreshContentIfOpen(inventory);    // Update UI inventory
+            }
+        }
+
+        private void ThrowItemInBin(TrashBin bin, ItemBase item, bool isRightHand) {
+            if (!item) return;
+
+            if (isRightHand) {                                                  // Empty hand
+                _rightHeldItem = null;
+                handUIManager?.ClearRightHandItem();
+            } else {
+                _leftHeldItem = null;
+                handUIManager?.ClearLeftHandItem();
+            }
+
+            bin.DisposeItem(item);                                              // Place item in bin
             UpdateActionsUI();
         }
 

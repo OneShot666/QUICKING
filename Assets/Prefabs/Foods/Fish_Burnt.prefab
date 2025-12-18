@@ -130,9 +130,9 @@ MonoBehaviour:
   itemType: 0
   currentState: 3
   sliceResult:
-    resultingPrefab: {fileID: 0}
-    quantity: 0
-    processTime: 0
+    resultingPrefab: {fileID: -5602463111652902729, guid: f061d9aea9828bf40af4ea75968484bd, type: 3}
+    quantity: 5
+    processTime: 15
   cookResult:
     resultingPrefab: {fileID: 0}
     quantity: 0

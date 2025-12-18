@@ -36,7 +36,8 @@ namespace Food {
             OnCollect();                                                        // Default behavior: Collect the item
         }
 
-        protected virtual void OnCollect() {                                    // ! On going function
+        // ! On going function
+        protected virtual void OnCollect() {                                    
             // TODO: Call InventoryManager.Instance.AddItem(this);
             gameObject.SetActive(false);                                        // Disable renderer/collider
         }
@@ -52,6 +53,7 @@ namespace Food {
             transform.localRotation = Quaternion.identity;
         }
 
+        // ! On going function
         public virtual void OnStore(Transform containerTransform) {             // Store inside a container
             // TODO: Call containerTransform.Instance.AddItem(this);
             Destroy(gameObject);

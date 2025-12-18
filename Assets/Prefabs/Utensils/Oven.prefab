@@ -314,9 +314,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -411,9 +411,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -500,16 +500,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facilityLight: {fileID: 5247428201353348854}
   isDoorOpen: 0
-  isLightOn: 1
+  isLightOn: 0
   interactionText: Open
   openInteractionText: Close
   doorObject: {fileID: 7806420569299388888}
-  rotationAxis: 1
+  rotationAxis: 0
   closedAngle: 0
   openedAngle: 85
-  doorAnimationSpeed: 3
+  doorAnimationSpeed: 180
   isAutoClose: 1
   customCloseDistance: 0
+  bonusRange: 50
   facilityInventory: {fileID: 2441642929257713613}
   previewSlotCount: 4
   smokeParticles: {fileID: 0}
