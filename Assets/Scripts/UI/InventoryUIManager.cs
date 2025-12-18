@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
@@ -29,9 +30,16 @@ namespace UI {
         public Vector2 cursorOffset = new(20, -20);                             // Mouse offset
 
         private readonly List<Texture2D> _generatedTextures = new();            // For cleaner code and avoid memory leak
-        private FacilityInventory _currentOpenedInventory;
+        private GameObject _previewContainer;
+        private GameObject _inventoryContainer;
+        private RectTransform _rootCanvasRect;
+        private RectTransform _canvasRect;
+        private Canvas _parentCanvas;
+
+        private FacilityInventory _currentOpenedInventory;                      // Scripts objects
         private PlayerInteraction _player;
-        private bool _isFullInventoryOpen;
+
+        private bool _isFullInventoryOpen;                                      // Panels states
         private bool _isPreviewActive;
 
         public static InventoryUIManager Instance;
@@ -39,53 +47,86 @@ namespace UI {
         void Awake() {
             Instance = this;
             if (previewCamera) previewCamera.enabled = false;                   // Turn off preview camera by default
-            
+
             var obj = GameObject.FindGameObjectWithTag("Player");
             if (obj) _player = obj.GetComponent<PlayerInteraction>();
+
+            Canvas myCanvas = GetComponentInParent<Canvas>();
+            if (myCanvas && myCanvas.rootCanvas) {
+                _parentCanvas = myCanvas;
+                _rootCanvasRect = myCanvas.rootCanvas.GetComponent<RectTransform>();
+            }
+
+            if (previewContentPanel) {
+                _previewContainer = previewContentPanel.parent.gameObject;
+                _previewContainer.SetActive(false);                             // Hide by default
+            }
+
+            if (inventoryContentPanel) {
+                _inventoryContainer = inventoryContentPanel.parent.gameObject;
+                _inventoryContainer.SetActive(false);                           // Hide by default
+            }
         }
 
-        void Update() {
+        void LateUpdate() {
             if (_isPreviewActive && previewContentPanel.gameObject.activeInHierarchy) // Follow mouse for preview
                 MoveContainerToMouse(previewContentPanel.gameObject);
         }
 
-        private void MoveContainerToMouse(GameObject container) {
-            Vector2 mousePos = Input.mousePosition;
-            RectTransform rect = container.GetComponent<RectTransform>();
+        private void MoveContainerToMouse(GameObject container) {               // Same as ItemOverlayManager.UpdatePosition()
+            if (!_rootCanvasRect || !_parentCanvas) return;
+            
+            RectTransform panelRect = container.GetComponent<RectTransform>();  // Get refs
+            Vector2 mousePos = Mouse.current.position.ReadValue();              // Mouse position (in pixels)
 
-            float pivotX = mousePos.x / Screen.width;                           // Keep UI on screen
-            float pivotY = mousePos.y / Screen.height;
-            rect.pivot = new Vector2(pivotX, pivotY);                           // Avoid pivot to exit screen
+            Camera cam = _parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : _parentCanvas.worldCamera;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(_rootCanvasRect, mousePos, cam, out var localPoint);
 
-            container.transform.position = mousePos + cursorOffset;
+            Vector2 finalLocalPos = localPoint + cursorOffset;                  // Target position (in pixels)
+
+            float width = panelRect.rect.width;                                 // Get screen size (in pixels)
+            float height = panelRect.rect.height;
+
+            float canvasRightEdge = _rootCanvasRect.rect.width / 2f;
+            float canvasBottomEdge = -_rootCanvasRect.rect.height / 2f;
+
+            if (finalLocalPos.x + width > canvasRightEdge) finalLocalPos.x = localPoint.x - width - cursorOffset.x;
+            if (finalLocalPos.y - height < canvasBottomEdge) finalLocalPos.y = localPoint.y + height - cursorOffset.y;
+
+            container.transform.localPosition = _rootCanvasRect.TransformPoint(finalLocalPos);  // Move container
         }
 
         public void ShowPreview(ItemBase[] items) {
-            if (_isFullInventoryOpen) return;
+            if (_isFullInventoryOpen || !_previewContainer) return;
 
-            previewContentPanel.gameObject.SetActive(true);
-            if (previewContentPanel) previewContentPanel.parent.gameObject.SetActive(true);
+            _previewContainer.gameObject.SetActive(true);
             _isPreviewActive = true;
 
             StopAllCoroutines();
-            RawImage[] uiSlots = PrepareSlots(previewContentPanel, items.Length);
-            StartCoroutine(GenerateSnapshots(items, uiSlots));
+
+            List<ItemBase> validItems = new List<ItemBase>();
+            foreach (var item in items) if (item) validItems.Add(item);
+            ItemBase[] filteredItems = validItems.ToArray();
+
+            RawImage[] uiSlots = PrepareSlots(previewContentPanel, filteredItems.Length);
+            StartCoroutine(GenerateSnapshots(filteredItems, uiSlots));
         }
 
         public void HidePreview() {
-            if (previewContentPanel.parent) previewContentPanel.parent.gameObject.SetActive(false);
+            if (_previewContainer) _previewContainer.SetActive(false);
             else previewContentPanel.gameObject.SetActive(false);
 
             _isPreviewActive = false;
         }
 
         public void ShowFullContent(FacilityInventory inventory) {
+            if (!_inventoryContainer) return;
+
             _currentOpenedInventory = inventory;                                // Memorize inventory
             ItemBase[] items = inventory.GetAllItems();
 
             _isFullInventoryOpen = true;
-            inventoryContentPanel.gameObject.SetActive(true);
-            if (inventoryContentPanel.parent) inventoryContentPanel.parent.gameObject.SetActive(true);
+            _inventoryContainer.SetActive(true);
 
             HidePreview();
             StopAllCoroutines();
@@ -98,7 +139,7 @@ namespace UI {
         public void HideFullContent() {
             _isFullInventoryOpen = false;
 
-            if (inventoryContentPanel.parent) inventoryContentPanel.parent.gameObject.SetActive(false);
+            if (_inventoryContainer) _inventoryContainer.gameObject.SetActive(false);
             else inventoryContentPanel.gameObject.SetActive(false);
 
             HidePreview();

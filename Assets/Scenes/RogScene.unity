@@ -3512,6 +3512,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Item Overlay Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2655194091707535820, guid: 653465efb7618d949a1befba5a71a2c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4732865680986820547, guid: 653465efb7618d949a1befba5a71a2c0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

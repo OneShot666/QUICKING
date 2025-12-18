@@ -29,6 +29,7 @@ namespace Player {
 
         private readonly List<InteractionOption> _currentOptions = new();
         private MonoBehaviour _currentInteractable;                             // ItemBase or ItemSurface
+        private MonoBehaviour _previousInteractable;                            // Same
         private PlayerInput _playerInput;
         private InputAction _dropAction;
         private ItemBase _rightHeldItem;
@@ -43,6 +44,7 @@ namespace Player {
 
         private void Update() {
             DetectNearbyObjects();
+            HandleFocusChange();
             HandleDrop();
         }
 
@@ -312,6 +314,18 @@ namespace Player {
                 UpdateActionsUI();                                              // Update action button
                 
                 InventoryUIManager.Instance.RefreshContentIfOpen(inventory);    // Update UI inventory
+            }
+        }
+
+        private void HandleFocusChange() {
+            if (_currentInteractable != _previousInteractable) {                // Check if object is different
+                if (_previousInteractable && _previousInteractable is BaseFacilityInteraction oldFacility)
+                    oldFacility.OnLoseFocus();                                  // Hide old facility preview
+
+                if (_currentInteractable && _currentInteractable is BaseFacilityInteraction newFacility)
+                    newFacility.OnFocus();                                      // Show new facility preview
+
+                _previousInteractable = _currentInteractable;                   // Update memory
             }
         }
 

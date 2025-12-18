@@ -1,7 +1,8 @@
 using UnityEngine;
 
 // Personal TO DO List
-// . Fixing overlay when mouse hover inventories (facility)
+// . Fixing inventory preview when player close to facility
+// -> follow mouse weirdly (InventoryUIManager.MoveContainerToMouse(), line 76)
 // ! Add utensils + script from ItemBase (use a new tag)
 // ! Add utensil script to create dishes (cooking pot, plate, etc.)
 // ! Make prefabs of everything + create kitchen prefab

@@ -5,6 +5,7 @@ using System;
 using Food;
 
 // Manage slots in Inventory UI Manager (display, mouse click and overlay)
+// ReSharper disable Unity.PerformanceCriticalCodeInvocation
 namespace UI {
     public class InventorySlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
         [Header("References")]
@@ -24,12 +25,12 @@ namespace UI {
             if (itemImage) itemImage.gameObject.SetActive(item);                // Activate slot (if has item)
         }
 
-        public void OnPointerEnter(PointerEventData eventData) {
-            if (_item) ItemOverlayManager.Instance.Show(_item);                 // Display overlay
+        public void OnPointerEnter(PointerEventData eventData) {                // Display overlay
+            if (_item && ItemOverlayManager.Instance) ItemOverlayManager.Instance.Show(_item);
         }
 
         public void OnPointerExit(PointerEventData eventData) {
-            ItemOverlayManager.Instance.Hide();
+            if (ItemOverlayManager.Instance) ItemOverlayManager.Instance.Hide();
         }
 
         private void OnDisable() {
