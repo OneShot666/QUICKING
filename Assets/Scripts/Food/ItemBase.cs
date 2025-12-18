@@ -25,6 +25,8 @@ namespace Food {
         [Header("State")]
         [Tooltip("Is the item currently pickable?")]
         protected bool isInteractable = true;
+        
+        public Sprite Icon => icon;
 
         private void Awake() {
             gameObject.layer = LayerMask.NameToLayer("Interactable");
