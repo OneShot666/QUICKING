@@ -2,9 +2,10 @@ using UnityEngine;
 
 // Personal TO DO List
 // . Adding food spawner + script
-// ! Add utensils + script from ItemBase
-// ! Add utensil to create dishes
-// ! Make prefabs of everything + kitchen
+// ! Add utensils + script from ItemBase (use a new tag)
+// ! Add utensil script to create dishes (cooking pot, plate, etc.)
+// ! Make prefabs of everything + create kitchen prefab
+// L Fix inventory + overlay interaction
 // R Add clients + orders (hungry time + angry time)
 
 // Official TO DO List
@@ -16,5 +17,5 @@ using UnityEngine;
 // R In-game interface allowing player to turn pages of a recipe book
 // R Non-diegetic interface to manage player’s hands : can carry ingredients and objects 
 // L Zoomable inventory menu
-// L Second, non-blocking display mode for the inventory, accessible by clicking the minimize icon
+// L (overlay) Second, non-blocking display mode for the inventory, accessible by clicking the minimize icon
 public class UIManager : MonoBehaviour {}

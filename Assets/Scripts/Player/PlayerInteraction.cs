@@ -140,7 +140,6 @@ namespace Player {
                 }
             } else if (_currentInteractable is ItemSurface surface) {           // Interact with surface
                 bool isAvailable = surface.IsAvailable();
-                if (surface is TrashBin binTest) print($"{binTest.name} : {isAvailable}");  // !!!
 
                 if (isAvailable) {                                              // Place item on surface
                     if (surface is TrashBin bin) {
