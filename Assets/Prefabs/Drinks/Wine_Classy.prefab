@@ -185,9 +185,9 @@ GameObject:
   - component: {fileID: 2702568098253026373}
   - component: {fileID: 2217755143243374195}
   - component: {fileID: -3005006174272181110}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wine_Classy
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

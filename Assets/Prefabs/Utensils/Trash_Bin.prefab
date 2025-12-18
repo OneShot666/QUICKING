@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 3358893974499505037}
   m_Layer: 6
   m_Name: Trash_Bin
-  m_TagString: Untagged
+  m_TagString: Utensil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

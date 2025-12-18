@@ -99,9 +99,9 @@ GameObject:
   - component: {fileID: 1322540571555899699}
   - component: {fileID: 7056185628286479570}
   - component: {fileID: -166304371818370109}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Beer
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

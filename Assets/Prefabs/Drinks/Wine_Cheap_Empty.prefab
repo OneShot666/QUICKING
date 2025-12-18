@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 827295812274861473}
   - component: {fileID: -3989837549322361474}
   - component: {fileID: -3413501489470057927}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wine_Cheap_Empty
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

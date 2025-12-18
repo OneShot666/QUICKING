@@ -109,7 +109,7 @@ namespace Player {
             }
         }
 
-        private void UpdateActionsUI() {
+        private void UpdateActionsUI() {                                        // Create action buttons
             if (!_currentInteractable) {
                 buttonsManager.Hide();
                 return;
@@ -181,26 +181,38 @@ namespace Player {
                     }
                 }
             } else if (_currentInteractable is BaseFacilityInteraction facility) {  // Interact with facility
-                _currentOptions.Add(new InteractionOption(facility.GetInteractionPrompt(), 
-                    () => { facility.Interact(); UpdateActionsUI(); }));
+                if (facility is ItemSpawner spawner) {
+                    if (spawner.CanSpawn()) {                                   // If not empty
+                        if (CanEquipInHand(true))
+                            _currentOptions.Add(new InteractionOption(spawner.GetInteractionPrompt() + " (Right)", 
+                                () => TakeFromSpawner(spawner, true)));
 
-                if (facility is KitchenFacility { isDoorOpen: false } kitchen) {
-                    FacilityInventory inv = kitchen.facilityInventory;
-
-                    if (inv && inv.HasSpace()) {
-                        if (_rightHeldItem)
-                            _currentOptions.Add(new InteractionOption($"Put {_rightHeldItem.GetName()} in {targetName}", 
-                                () => StoreItemInFacility(inv, _rightHeldItem, true)));
-
-                        if (_leftHeldItem)
-                            _currentOptions.Add(new InteractionOption($"Put {_leftHeldItem.GetName()} in {targetName}", 
-                                () => StoreItemInFacility(inv, _leftHeldItem, false)));
+                        if (CanEquipInHand(false))
+                            _currentOptions.Add(new InteractionOption(spawner.GetInteractionPrompt() + " (Left)", 
+                                () => TakeFromSpawner(spawner, false)));
                     }
-                }
+                } else {
+                    _currentOptions.Add(new InteractionOption(facility.GetInteractionPrompt(), 
+                        () => { facility.Interact(); UpdateActionsUI(); }));
 
-                if (facility is CookingFacility { isDoorOpen: false, isLightOn: true } oven ) // To turn off facilities
-                    _currentOptions.Add(new InteractionOption($"Turn off {targetName}", 
-                        () => { oven.TurnOff(); UpdateActionsUI(); }));
+                    if (facility is KitchenFacility { isDoorOpen: false } kitchen) {
+                        FacilityInventory inv = kitchen.facilityInventory;
+
+                        if (inv && inv.HasSpace()) {
+                            if (_rightHeldItem)
+                                _currentOptions.Add(new InteractionOption($"Put {_rightHeldItem.GetName()} in {targetName}", 
+                                    () => StoreItemInFacility(inv, _rightHeldItem, true)));
+
+                            if (_leftHeldItem)
+                                _currentOptions.Add(new InteractionOption($"Put {_leftHeldItem.GetName()} in {targetName}", 
+                                    () => StoreItemInFacility(inv, _leftHeldItem, false)));
+                        }
+                    }
+
+                    if (facility is CookingFacility { isDoorOpen: false, isLightOn: true } oven ) // To turn off facilities
+                        _currentOptions.Add(new InteractionOption($"Turn off {targetName}", 
+                            () => { oven.TurnOff(); UpdateActionsUI(); }));
+                }
             }
 
             if (_currentOptions.Count > 0) buttonsManager.Show(_currentInteractable.transform, _currentOptions);
@@ -222,23 +234,15 @@ namespace Player {
 
             UpdateActionsUI();
         }
-        
-        private void StoreItemInFacility(FacilityInventory inventory, ItemBase item, bool isRightHand) {
-            if (!item) return;
 
-            if (inventory.AddItem(item)) {                                      // Try to add item
-                if (isRightHand) {                                              // If success, update hands
-                    _rightHeldItem = null;
-                    handUIManager?.ClearRightHandItem();
-                } else {
-                    _leftHeldItem = null;
-                    handUIManager?.ClearLeftHandItem();
-                }
+        private void SliceFood(CuttingBoard board) {
+            board.OnInteract();
+            UpdateActionsUI();
+        }
 
-                UpdateActionsUI();                                              // Update action button
-                
-                InventoryUIManager.Instance.RefreshContentIfOpen(inventory);    // Update UI inventory
-            }
+        private void CookFood(CookingStation stove) {
+            stove.OnInteract();
+            UpdateActionsUI();
         }
 
         private void ThrowItemInBin(TrashBin bin, ItemBase item, bool isRightHand) {
@@ -273,14 +277,42 @@ namespace Player {
             UpdateActionsUI();
         }
 
-        private void SliceFood(CuttingBoard board) {
-            board.OnInteract();
+        private void TakeFromSpawner(ItemSpawner spawner, bool isRightHand) {
+            ItemBase newItem = spawner.SpawnItem();                             // Get instance of item
+
+            if (newItem) {                                                      // Equip item
+                if (isRightHand) {
+                    _rightHeldItem = newItem;
+                    handUIManager?.SetRightHandItem(newItem);
+                    newItem.OnEquip(rightHand);
+                } else {
+                    _leftHeldItem = newItem;
+                    handUIManager?.SetLeftHandItem(newItem);
+                    newItem.OnEquip(leftHand);
+                }
+                
+                if (pickUpSound) pickUpSound.Play();
+            }
+            
             UpdateActionsUI();
         }
+        
+        private void StoreItemInFacility(FacilityInventory inventory, ItemBase item, bool isRightHand) {
+            if (!item) return;
 
-        private void CookFood(CookingStation stove) {
-            stove.OnInteract();
-            UpdateActionsUI();
+            if (inventory.AddItem(item)) {                                      // Try to add item
+                if (isRightHand) {                                              // If success, update hands
+                    _rightHeldItem = null;
+                    handUIManager?.ClearRightHandItem();
+                } else {
+                    _leftHeldItem = null;
+                    handUIManager?.ClearLeftHandItem();
+                }
+
+                UpdateActionsUI();                                              // Update action button
+                
+                InventoryUIManager.Instance.RefreshContentIfOpen(inventory);    // Update UI inventory
+            }
         }
 
         private void HandleDrop() {

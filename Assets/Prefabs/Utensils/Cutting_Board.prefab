@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 4713260765840749891}
   m_Layer: 6
   m_Name: Cutting_Board
-  m_TagString: Untagged
+  m_TagString: Utensil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -455,6 +455,7 @@ MonoBehaviour:
   cuttingParticles: {fileID: 0}
   cuttingSound: {fileID: 0}
   canGrabWhileCutting: 1
+  cuttingSpeedMultiplier: 1
   progressBarPrefab: {fileID: 4879863352344575874, guid: 6a3c6ba18d8dbaf4da8e6471210c588d, type: 3}
 --- !u!1 &2272898161575688137
 GameObject:

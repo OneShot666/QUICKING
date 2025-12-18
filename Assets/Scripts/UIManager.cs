@@ -1,11 +1,12 @@
 using UnityEngine;
 
 // Personal TO DO List
-// . Adding food spawner + script
+// . Fixing overlay when mouse hover inventories (facility)
 // ! Add utensils + script from ItemBase (use a new tag)
 // ! Add utensil script to create dishes (cooking pot, plate, etc.)
 // ! Make prefabs of everything + create kitchen prefab
-// L Fix inventory + overlay interaction
+// L Fix inventory interactions
+// L Add magnificent glass
 // R Add clients + orders (hungry time + angry time)
 
 // Official TO DO List

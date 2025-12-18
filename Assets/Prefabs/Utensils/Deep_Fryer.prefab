@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 2725577390507021657}
   m_Layer: 6
   m_Name: Deep_Fryer
-  m_TagString: Untagged
+  m_TagString: Utensil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

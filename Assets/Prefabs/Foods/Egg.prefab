@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0173c015c3c448b88df1c79e7e9aeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodContainer: {fileID: 0}
   itemName: Egg
   itemDescription: Not cooked yet
   icon: {fileID: 0}
@@ -130,7 +131,7 @@ MonoBehaviour:
   currentState: 0
   sliceResult:
     resultingPrefab: {fileID: 0}
-    quantity: 0
+    quantity: 1
     processTime: 0
   cookResult:
     resultingPrefab: {fileID: 437855652769380300, guid: 75e3635fe080d1e499f1dd66bed85599, type: 3}

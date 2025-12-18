@@ -185,9 +185,9 @@ GameObject:
   - component: {fileID: 3195717390025976335}
   - component: {fileID: -4559067296878120745}
   - component: {fileID: -711159559947456273}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottle_Water
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

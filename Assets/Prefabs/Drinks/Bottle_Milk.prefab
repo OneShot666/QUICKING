@@ -99,9 +99,9 @@ GameObject:
   - component: {fileID: 8099117157091215496}
   - component: {fileID: -8865409318549382697}
   - component: {fileID: 5217970624497424645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottle_Milk
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
