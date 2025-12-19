@@ -213,6 +213,13 @@ namespace Player {
                         _currentOptions.Add(new InteractionOption($"Turn off {targetName}", 
                             () => { oven.TurnOff(); UpdateActionsUI(); }));
                 }
+            } else if (_currentInteractable is NPCs.NPCClient npcClient) {
+                if (_rightHeldItem && _rightHeldItem is FoodItem foodRight) {
+                    _currentOptions.Add(new InteractionOption($"Give {foodRight.GetName()} (Right)", () => GiveItemToClient(npcClient, _rightHeldItem, true)));
+                }
+                if (_leftHeldItem && _leftHeldItem is FoodItem foodLeft) {
+                    _currentOptions.Add(new InteractionOption($"Give {foodLeft.GetName()} (Left)", () => GiveItemToClient(npcClient, _leftHeldItem, false)));
+                }
             }
 
             if (_currentOptions.Count > 0) buttonsManager.Show(_currentInteractable.transform, _currentOptions);
@@ -337,6 +344,19 @@ namespace Player {
             Gizmos.color = Color.yellow;
             Vector3 detectionCenter = transform.TransformPoint(interactionOffset);
             Gizmos.DrawWireSphere(detectionCenter, interactionRadius);
+        }
+
+        private void GiveItemToClient(NPCs.NPCClient client, ItemBase item, bool isRightHand) {
+            if (client.TryDeliverItem(item.gameObject)) {
+                if (isRightHand) {
+                    _rightHeldItem = null;
+                    handUIManager?.ClearRightHandItem();
+                } else {
+                    _leftHeldItem = null;
+                    handUIManager?.ClearLeftHandItem();
+                }
+                UpdateActionsUI();
+            }
         }
     }
 }

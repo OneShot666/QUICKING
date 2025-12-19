@@ -76,13 +76,13 @@ namespace UI {
                     if (food.CanBeCooked()) {
                         var info = food.GetCookInfo();
                         string result = info.resultingPrefab ? info.resultingPrefab.GetName() : "???";
-                        details += $"Can be cook into {result} (x{info.quantity})\n";
+                        details += $"Can be cooked into {result} (x{info.quantity})\n";
                     }
 
                     if (food.CanBeEaten()) {
                         var info = food.GetEatenInfo();
                         string result = info.resultingPrefab ? info.resultingPrefab.GetName() : "???";
-                        details += $"Can be eat and give {result} (x{info.quantity})\n";
+                        details += $"Can be eaten and gives {result} (x{info.quantity})\n";
                     }
                 }
 

@@ -126,7 +126,7 @@ MonoBehaviour:
   foodContainer: {fileID: 0}
   itemName: Egg Cooked
   itemDescription: Cooked to perfection
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7bc2d15062febd94184c29f6150d82ca, type: 3}
   itemType: 0
   currentState: 2
   sliceResult:
@@ -141,3 +141,7 @@ MonoBehaviour:
     resultingPrefab: {fileID: 0}
     quantity: 0
     processTime: 0
+  ingredients:
+  - {fileID: -386012778522917691, guid: 0894e3648b825f74fa794cf7b3189151, type: 3}
+  - {fileID: -386012778522917691, guid: 61c7bcee631722846a432f32c45dbfa2, type: 3}
+  - {fileID: -386012778522917691, guid: c9e433812b6d5044787e6594d07ad8bc, type: 3}

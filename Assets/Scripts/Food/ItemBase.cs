@@ -18,7 +18,7 @@ namespace Food {
         [Tooltip("Description displayed in the overlay or inventory")]
         [SerializeField] [TextArea] protected string itemDescription;
         [Tooltip("Icon for the Inventory UI")]
-        [SerializeField] protected Sprite icon;
+        [SerializeField] public Sprite icon;
         [Tooltip("Category of the item")]
         [SerializeField] protected ItemType itemType;
 

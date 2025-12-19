@@ -126,7 +126,7 @@ MonoBehaviour:
   foodContainer: {fileID: 0}
   itemName: Beef Steak Cooked
   itemDescription: Cooked to perfection
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1ebc183198194a049ba366282e50e72e, type: 3}
   itemType: 0
   currentState: 2
   sliceResult:
@@ -141,3 +141,7 @@ MonoBehaviour:
     resultingPrefab: {fileID: 0}
     quantity: 0
     processTime: 0
+  ingredients:
+  - {fileID: 8158748690565765752, guid: ab21c1ae67460364cacbd44e458625c1, type: 3}
+  - {fileID: -386012778522917691, guid: c9e433812b6d5044787e6594d07ad8bc, type: 3}
+  - {fileID: -386012778522917691, guid: 61c7bcee631722846a432f32c45dbfa2, type: 3}

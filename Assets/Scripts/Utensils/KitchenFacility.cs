@@ -6,6 +6,7 @@ using System;
 using Player;
 using Food;
 using UI;
+using System.Collections.Generic;
 
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation
 namespace Utensils {
@@ -39,6 +40,15 @@ namespace Utensils {
         [Header("Inventory")]
         public FacilityInventory facilityInventory;
         public int previewSlotCount = 5;
+
+        // --- Recipe Book Integration ---
+        [Header("Recipe/Menu Items")]
+        public List<ItemBase> menuItems = new List<ItemBase>(); // Use actual item instances
+        public int currentMenuItemIndex = 0;
+        public GameObject recipeUICanvas;
+        public RecipeUI recipeUI;
+        private bool isRecipeUIOpen = false;
+        // --- End Recipe Book Integration ---
 
         private PlayerInteraction _playerScript; 
         private Quaternion _initialRotation;
@@ -101,6 +111,8 @@ namespace Utensils {
         }
 
         public override string GetInteractionPrompt() {
+            if (isRecipeUIOpen) return "Close Menu";
+            if (!isRecipeUIOpen && recipeUICanvas) return "Open Menu";
             return isDoorOpen ? openInteractionText : interactionText;
         }
 
@@ -110,12 +122,46 @@ namespace Utensils {
 
         public override void Interact() {
             lastInteractionTime = Time.time;
-
+            // If menu UI is available, toggle it
+            if (recipeUICanvas) {
+                if (!isRecipeUIOpen) {
+                    OpenMenu();
+                } else {
+                    CloseMenu();
+                }
+                return;
+            }
             ToggleDoor();
-            
             if (isDoorOpen) OpenInventory();
             else CloseInventory();
         }
+
+        // --- Menu Methods ---
+        public void OpenMenu() {
+            isRecipeUIOpen = true;
+            if (recipeUICanvas) recipeUICanvas.SetActive(true);
+            if (recipeUI) {
+                recipeUI.ShowMenu(menuItems, currentMenuItemIndex);
+                // Enable auto-close: pass player, facility, close distance, and owner
+                if (_playerTransform)
+                    recipeUI.EnableAutoClose(_playerTransform, this.transform, customCloseDistance > 0 ? customCloseDistance : (_playerScript ? _playerScript.InteractionRadius * (1 + bonusRange / 100f) : 3.0f), this);
+            }
+        }
+        public void CloseMenu() {
+            isRecipeUIOpen = false;
+            if (recipeUICanvas) recipeUICanvas.SetActive(false);
+        }
+        public void NextMenuItem() {
+            if (menuItems.Count == 0) return;
+            currentMenuItemIndex = (currentMenuItemIndex + 1) % menuItems.Count;
+            if (recipeUI) recipeUI.ShowMenu(menuItems, currentMenuItemIndex);
+        }
+        public void PreviousMenuItem() {
+            if (menuItems.Count == 0) return;
+            currentMenuItemIndex = (currentMenuItemIndex - 1 + menuItems.Count) % menuItems.Count;
+            if (recipeUI) recipeUI.ShowMenu(menuItems, currentMenuItemIndex);
+        }
+        // --- End Menu Methods ---
 
         private void ToggleDoor() {
             isDoorOpen = !isDoorOpen;
@@ -141,7 +187,11 @@ namespace Utensils {
             }
         }
 
-        public override void OnLoseFocus() {                                    // When player move away
+        public override void OnLoseFocus() {
+            if (isRecipeUIOpen) {
+                if (recipeUI) recipeUI.OnLoseFocus();
+                CloseMenu();
+            }
             InventoryUIManager.Instance.HidePreview();                          // Hide UI preview
         }
 

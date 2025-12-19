@@ -300,7 +300,7 @@ MonoBehaviour:
   foodContainer: {fileID: 0}
   itemName: Chicken Cooked
   itemDescription: Cooked to perfection
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: bb6cfb13938c6324ea50df8e7380ac2e, type: 3}
   itemType: 0
   currentState: 2
   sliceResult:
@@ -315,3 +315,6 @@ MonoBehaviour:
     resultingPrefab: {fileID: 7962600465341110459, guid: 8af21a29899e8934ebef882ccade6d90, type: 3}
     quantity: 2
     processTime: 30
+  ingredients:
+  - {fileID: 2807512059787250556, guid: e95e2d6ed56a5af4c92d985aef51cd8d, type: 3}
+  - {fileID: -386012778522917691, guid: 61c7bcee631722846a432f32c45dbfa2, type: 3}

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace Food {
     public class FoodItem : ItemBase {
@@ -13,6 +14,9 @@ namespace Food {
         [Tooltip("What item became when cook")]
         [SerializeField] private TransformationData cookResult;
         [SerializeField] private TransformationData eatResult;
+
+        [Header("Ingredients")]
+        [SerializeField] private List<ItemBase> ingredients = new List<ItemBase>();
 
         // Structure simple pour définir le résultat d'une action
         [System.Serializable]
@@ -40,6 +44,8 @@ namespace Food {
         public TransformationData GetCookInfo() => cookResult;                  // Result of cook
 
         public TransformationData GetEatenInfo() => eatResult;                  // Result of eaten
+
+        public List<ItemBase> GetIngredients() => ingredients;
 
         protected override void Reset() {
             base.Reset();
