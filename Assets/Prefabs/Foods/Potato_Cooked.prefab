@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodContainer: {fileID: 0}
   itemName: Potato Cooked
-  itemDescription: Cooked to perfection
+  itemDescription: A steamy potato right out of the oven.
   icon: {fileID: 21300000, guid: c1a42d40d26bda446adcf4def61cf34b, type: 3}
   itemType: 0
   currentState: 2

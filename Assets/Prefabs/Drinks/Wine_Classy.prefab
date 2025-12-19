@@ -297,8 +297,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodContainer: {fileID: 0}
   itemName: Wine Classy
-  itemDescription: Not cooked yet
-  icon: {fileID: 0}
+  itemDescription: A fine drink for your taste buds.
+  icon: {fileID: 21300000, guid: a3a01814dcdb88a4882b0b2b98a0401f, type: 3}
   itemType: 0
   currentState: 0
   sliceResult:
@@ -313,3 +313,4 @@ MonoBehaviour:
     resultingPrefab: {fileID: -3005006174272181110, guid: 52d5fa1223e85964ab0e7a176dc0aadd, type: 3}
     quantity: 1
     processTime: 5
+  ingredients: []

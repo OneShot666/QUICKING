@@ -299,7 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodContainer: {fileID: 0}
   itemName: Chicken Cooked
-  itemDescription: Cooked to perfection
+  itemDescription: Nothing better than a nice buttery roasted chicken.
   icon: {fileID: 21300000, guid: bb6cfb13938c6324ea50df8e7380ac2e, type: 3}
   itemType: 0
   currentState: 2

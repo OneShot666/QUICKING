@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodContainer: {fileID: 0}
   itemName: Egg Cooked
-  itemDescription: Cooked to perfection
+  itemDescription: A nice & basic fried egg
   icon: {fileID: 21300000, guid: 7bc2d15062febd94184c29f6150d82ca, type: 3}
   itemType: 0
   currentState: 2

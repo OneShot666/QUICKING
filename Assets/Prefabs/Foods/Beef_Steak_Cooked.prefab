@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodContainer: {fileID: 0}
   itemName: Beef Steak Cooked
-  itemDescription: Cooked to perfection
+  itemDescription: A juicy & tender piece of steak.
   icon: {fileID: 21300000, guid: 1ebc183198194a049ba366282e50e72e, type: 3}
   itemType: 0
   currentState: 2
