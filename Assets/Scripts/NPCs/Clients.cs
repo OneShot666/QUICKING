@@ -18,6 +18,7 @@ namespace NPCs {
         private int gold;
         private float timer;
         private Queue<NPCClient> clientQueue = new Queue<NPCClient>();
+        private bool _hasAdvancedSpeech = false;
 
         // Update is called once per frame
         private void Update()
@@ -57,6 +58,13 @@ namespace NPCs {
                 clientQueue.Dequeue();
                 gold += 10;
                 if (goldText) goldText.text = gold.ToString();
+                // Advance Whippy speech progression only after the first client order is completed, one time only
+                if (!_hasAdvancedSpeech)
+                {
+                    var whippyManager = FindFirstObjectByType<Whippy.WhippyManager>();
+                    if (whippyManager) whippyManager.NextStep();
+                    _hasAdvancedSpeech = true;
+                }
             }
         }
 

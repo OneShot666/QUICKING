@@ -3573,6 +3573,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1585916964468236772, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 206
+      objectReference: {fileID: 0}
+    - target: {fileID: 1585916964468236772, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 518
+      objectReference: {fileID: 0}
+    - target: {fileID: 1585916964468236772, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 1585916964468236772, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 1585916964468236772, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1585916964468236772, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2149749539976892658, guid: 83305280b67b18743ae89035c44de38a, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.5
@@ -3595,15 +3619,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3704089144762708772, guid: 83305280b67b18743ae89035c44de38a, type: 3}
       propertyPath: 'progressionSteps.Array.data[0]'
-      value: Present
+      value: Intro
       objectReference: {fileID: 0}
     - target: {fileID: 3704089144762708772, guid: 83305280b67b18743ae89035c44de38a, type: 3}
       propertyPath: 'progressionSteps.Array.data[1]'
-      value: Introduction
+      value: Mission
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: activeSpeechListName
+      value: Intro
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: speechListEntries.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: speechListEntries.Array.data[0].listName
+      value: Intro
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: speechListEntries.Array.data[1].listName
+      value: Mission
       objectReference: {fileID: 0}
     - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
       propertyPath: speechListEntries.Array.data[0].speeches.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
       propertyPath: speechListEntries.Array.data[1].speeches.Array.size
@@ -3618,15 +3658,39 @@ PrefabInstance:
       value: C'est parti !
       objectReference: {fileID: 0}
     - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
-      propertyPath: 'speechListEntries.Array.data[1].speeches.Array.data[0]'
+      propertyPath: 'speechListEntries.Array.data[0].speeches.Array.data[3]'
       value: "Tu peux voir l'ordre du client sur l'\xE9cran."
       objectReference: {fileID: 0}
     - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
-      propertyPath: 'speechListEntries.Array.data[1].speeches.Array.data[1]'
+      propertyPath: 'speechListEntries.Array.data[0].speeches.Array.data[4]'
       value: "Essaie de pr\xE9parer ce qu'il veut !"
       objectReference: {fileID: 0}
     - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: 'speechListEntries.Array.data[0].speeches.Array.data[5]'
+      value: "Une fois pr\xE9par\xE9, sers le lui !"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: 'speechListEntries.Array.data[1].speeches.Array.data[0]'
+      value: "Tu as r\xE9ussi ta premi\xE8re commande !"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: 'speechListEntries.Array.data[1].speeches.Array.data[1]'
+      value: "Continue comme \xE7a !"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
       propertyPath: 'speechListEntries.Array.data[1].speeches.Array.data[2]'
+      value: Tu seras un grand chef cuisinier !
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: 'speechListEntries.Array.data[1].speeches.Array.data[3]'
+      value: "Tu peux voir l'ordre du client sur l'\xE9cran."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: 'speechListEntries.Array.data[1].speeches.Array.data[4]'
+      value: "Essaie de pr\xE9parer ce qu'il veut !"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354388579016981892, guid: 83305280b67b18743ae89035c44de38a, type: 3}
+      propertyPath: 'speechListEntries.Array.data[1].speeches.Array.data[5]'
       value: "Une fois pr\xE9par\xE9, sers le lui !"
       objectReference: {fileID: 0}
     - target: {fileID: 4879106018502744836, guid: 83305280b67b18743ae89035c44de38a, type: 3}
