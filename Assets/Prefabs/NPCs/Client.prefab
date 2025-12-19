@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: c980bec68dfa4304aa41675b0b10896e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,6 +124,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requestedItemName: 
+  requestedItem: {fileID: 0}
   requestUIPrefab: {fileID: 0}
   requestUIAnchor: {fileID: 0}
+  requestedDishText: {fileID: 0}
   assignedPlate: {fileID: 0}
+  waitingSpot: {fileID: 0}
+  exitSpot: {fileID: 0}
+  moveSpeed: 2

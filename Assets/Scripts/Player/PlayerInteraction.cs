@@ -336,8 +336,17 @@ namespace Player {
 
             item.OnDrop();                                                      // Handles parenting to "Foods"
 
-            if (isRightHand) _rightHeldItem = null;
-            else _leftHeldItem = null;
+            if (isRightHand)
+            {
+                _rightHeldItem = null;
+                handUIManager?.ClearRightHandItem();
+            }
+
+            else
+            {
+                _leftHeldItem = null;
+                handUIManager?.ClearLeftHandItem();
+            }
         }
 
         private void OnDrawGizmosSelected() {                                   // Draw radius in Scene View
