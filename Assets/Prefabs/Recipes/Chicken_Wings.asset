@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c5bf7a3a3ba49f2a9d2a7e37e7c9297, type: 3}
+  m_Name: Chicken_Wings
+  m_EditorClassIdentifier: 
+  recipeName: Chicken wings
+  ingredients:
+  - {fileID: 4354051322000102723, guid: 295510cb09491d645a7a612a174a13fa, type: 3}
+  - {fileID: 4354051322000102723, guid: 295510cb09491d645a7a612a174a13fa, type: 3}
+  - {fileID: 8256989763145833876, guid: 31aef2b35e89a6e4e9a4c8501a8288f1, type: 3}
+  result: {fileID: 7800351548409203991, guid: 72b9e8ec151b82c45ade2698c37a8bc3, type: 3}
+  description: Fried chicken wings served with fries.

@@ -15,7 +15,7 @@ namespace UI {
 
         private readonly List<GameObject> _ingredientSlots = new();
 
-        public void ShowRecipe(List<Recipe> recipes, int index) {
+        public void ShowRecipe(List<Recipe.Recipe> recipes, int index) {
             if (recipes == null || recipes.Count == 0 || index < 0 || index >= recipes.Count) {
                 recipeNameText.text = "";
                 descriptionText.text = "";
@@ -23,10 +23,10 @@ namespace UI {
                 ClearIngredientSlots();
                 return;
             }
-            Recipe recipe = recipes[index];
+            Recipe.Recipe recipe = recipes[index];
             recipeNameText.text = recipe.recipeName;
             descriptionText.text = recipe.description;
-            resultImage.sprite = recipe.result ? recipe.result.Icon : null;
+            resultImage.sprite = recipe.result ? recipe.Icon : null;
             ShowIngredients(recipe.ingredients);
         }
 

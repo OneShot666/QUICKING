@@ -3,6 +3,8 @@ using UnityEngine;
 // Personal TO DO List
 // . Fixing inventory preview when player close to facility
 // -> follow mouse weirdly (InventoryUIManager.MoveContainerToMouse(), line 76)
+// ! Fix Cook button for KitchenFacility (Oven)
+// ! Add tables (x1, x2, x4 & x6 pers)
 // ! Add utensils + script from ItemBase (use a new tag)
 // ! Add utensil script to create dishes (cooking pot, plate, etc.)
 // ! Make prefabs of everything + create kitchen prefab

@@ -14,7 +14,7 @@ public class RecipeBook : BaseFacilityInteraction
     public float animationSpeed = 5f;
 
     [Header("Recipes")]
-    public List<Recipe> recipes = new List<Recipe>();
+    public List<Recipe.Recipe> recipes = new List<Recipe.Recipe>();
     public int currentRecipeIndex = 0;
 
     [Header("UI")]
