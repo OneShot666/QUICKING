@@ -338,6 +338,7 @@ namespace Player {
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             if (isRightHand)
             {
                 _rightHeldItem = null;
@@ -349,11 +350,16 @@ namespace Player {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
             if (isRightHand) {
                 _rightHeldItem = null;
                 handUIManager?.ClearRightHandItem();
             } else {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
