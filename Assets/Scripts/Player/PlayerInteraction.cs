@@ -336,6 +336,7 @@ namespace Player {
 
             item.OnDrop();                                                      // Handles parenting to "Foods"
 
+<<<<<<< Updated upstream
             if (isRightHand)
             {
                 _rightHeldItem = null;
@@ -344,6 +345,12 @@ namespace Player {
 
             else
             {
+=======
+            if (isRightHand) {
+                _rightHeldItem = null;
+                handUIManager?.ClearRightHandItem();
+            } else {
+>>>>>>> Stashed changes
                 _leftHeldItem = null;
                 handUIManager?.ClearLeftHandItem();
             }
