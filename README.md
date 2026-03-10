@@ -1,2 +1,2 @@
 # QUICKING
-Manage your cUIsine with Whippy !
+Manage your cUIsine with Whippy  !
